@@ -129,6 +129,12 @@
   }
   #chat-header .header-title { font-size: 14px; font-weight: 600; }
   #chat-header .header-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  #new-chat-btn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 5px 11px; border-radius: 7px; font-size: 11px; font-weight: 500;
+    cursor: pointer; transition: all .15s; white-space: nowrap;
+  }
+  #new-chat-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   .model-selector {
     margin-left: auto; display: flex; align-items: center; gap: 8px;
@@ -354,6 +360,7 @@
       <div class="header-title">Chat</div>
       <div class="header-sub" id="header-sub">Ready</div>
     </div>
+    <button id="new-chat-btn" onclick="newConversation()" title="Clear and start a new conversation">+ New chat</button>
     <div class="model-selector">
       <span class="model-label">Model</span>
       <div class="model-toggle">
@@ -396,8 +403,10 @@
 <div id="toast"></div>
 
 <script>
-  let modelPreference = 'auto';
-  let extractedFacts  = [];
+  let modelPreference      = 'auto';
+  let extractedFacts       = [];
+  let conversationHistory  = [];
+  let sessionId            = crypto.randomUUID().slice(0, 8);
 
   // ── Model toggle ───────────────────────────────────────────────────────────
   function setModel(pref, btn) {
@@ -576,6 +585,24 @@
   }
 
   // ── Chat ───────────────────────────────────────────────────────────────────
+  function newConversation() {
+    conversationHistory = [];
+    sessionId = crypto.randomUUID().slice(0, 8);
+    const msgs = document.getElementById('messages');
+    msgs.innerHTML = `
+      <div class="welcome-card">
+        <h3>✦ New conversation</h3>
+        <p>Your memories are still active — Jarvis will personalize responses based on what it knows about you.</p>
+        <ul class="welcome-features">
+          <li>Conversation history cleared — fresh start</li>
+          <li>All saved memories still available</li>
+          <li>Use Extract tab to save facts from this session</li>
+        </ul>
+      </div>`;
+    setHeaderSub('Ready');
+    input.focus();
+  }
+
   async function sendMessage() {
     const input = document.getElementById('query-input');
     const query = input.value.trim();
@@ -592,12 +619,19 @@
 
     appendMsg('user', query);
     const thinkingEl = appendThinking();
-    setHeaderSub('Thinking…');
+    const turnNum = Math.floor(conversationHistory.length / 2) + 1;
+    setHeaderSub(`Thinking… (turn ${turnNum})`);
 
     try {
       const res = await fetch('/ask', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, inject_memory: injectMemory, model_preference: modelPreference }),
+        body: JSON.stringify({
+          query,
+          inject_memory: injectMemory,
+          model_preference: modelPreference,
+          conversation_history: conversationHistory,
+          session_id: sessionId,
+        }),
       });
       thinkingEl.remove();
       if (res.status === 429) {
@@ -606,8 +640,13 @@
         setHeaderSub('Rate limit reached');
       } else {
         const data = await res.json();
+        // Append both turns to history
+        conversationHistory.push({ role: 'user',      content: query });
+        conversationHistory.push({ role: 'assistant', content: data.response });
+        if (conversationHistory.length > 20) conversationHistory = conversationHistory.slice(-20);
+        const turns = conversationHistory.length / 2;
         appendMsg('assistant', data.response, data.interaction_id, data.memories_used || [], data.latency_ms, data.model);
-        setHeaderSub(`Last: ${data.latency_ms}ms · ${data.model}`);
+        setHeaderSub(`Turn ${turns} · ${data.latency_ms}ms · ${data.model}`);
         loadLimits();
       }
     } catch(e) {

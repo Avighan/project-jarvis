@@ -79,15 +79,13 @@ def _extract_with_claude(conversation: str) -> dict:
     return _parse_json_response(msg.content[0].text)
 
 
-def _generate_with_claude_chat(prompt: str) -> tuple:
+def _generate_with_claude_chat(messages: list, system_prompt: str = "") -> tuple:
     client = _claude_client()
     t0 = time.time()
-    msg = client.messages.create(
-        model=CLAUDE_CHAT_MODEL,
-        max_tokens=1024,
-        temperature=0.7,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    kwargs = dict(model=CLAUDE_CHAT_MODEL, max_tokens=1024, temperature=0.7, messages=messages)
+    if system_prompt:
+        kwargs["system"] = system_prompt
+    msg = client.messages.create(**kwargs)
     latency_ms = int((time.time() - t0) * 1000)
     return msg.content[0].text, latency_ms
 
@@ -98,6 +96,8 @@ class AskRequest(BaseModel):
     query: str
     inject_memory: bool = True
     model_preference: str = "auto"   # "auto" | "claude" | "ollama"
+    conversation_history: list = []  # [{"role": "user"|"assistant", "content": str}]
+    session_id: Optional[str] = None
 
 class AddMemoryRequest(BaseModel):
     content: str
@@ -167,30 +167,43 @@ async def ask(req: AskRequest, request: Request):
                 for h in hits:
                     ms.mark_memory_accessed(h["id"], DB_PATH)
 
-    prompt = f"{context_block}User: {req.query}" if context_block else req.query
+    # Build message list: prior history (last 10 turns) + current query
+    history = req.conversation_history[-20:]  # keep last 20 messages = 10 turns
+    claude_messages = history + [{"role": "user", "content": req.query}]
+
+    # For Ollama: format history as text prefix
+    def _ollama_prompt():
+        parts = []
+        if context_block:
+            parts.append(context_block)
+        for m in history:
+            role = "User" if m["role"] == "user" else "Assistant"
+            parts.append(f"{role}: {m['content']}")
+        parts.append(f"User: {req.query}")
+        return "\n".join(parts)
 
     # Route to Claude or Ollama based on preference
     pref = req.model_preference
     model_used = ""
 
     if pref == "claude":
-        response, latency_ms = _generate_with_claude_chat(prompt)
+        response, latency_ms = _generate_with_claude_chat(claude_messages, system_prompt=context_block)
         model_used = CLAUDE_CHAT_MODEL
     elif pref == "ollama":
         ollama_model = pick_model()
-        response, latency_ms = generate(prompt, model=ollama_model, temperature=0.7)
+        response, latency_ms = generate(_ollama_prompt(), model=ollama_model, temperature=0.7)
         model_used = ollama_model
     else:
         # auto: try Ollama first, fall back to Claude
         try:
             ollama_model = pick_model()
-            response, latency_ms = generate(prompt, model=ollama_model, temperature=0.7)
+            response, latency_ms = generate(_ollama_prompt(), model=ollama_model, temperature=0.7)
             model_used = ollama_model
         except Exception:
-            response, latency_ms = _generate_with_claude_chat(prompt)
+            response, latency_ms = _generate_with_claude_chat(claude_messages, system_prompt=context_block)
             model_used = CLAUDE_CHAT_MODEL
 
-    session_id = str(uuid.uuid4())[:8]
+    session_id = req.session_id or str(uuid.uuid4())[:8]
     interaction_id = ms.log_interaction(
         session_id=session_id,
         user_input=req.query,
