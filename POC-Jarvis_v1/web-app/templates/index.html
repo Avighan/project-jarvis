@@ -389,7 +389,7 @@
       <textarea id="query-input" placeholder="Ask something… (Enter to send, Shift+Enter for new line)" rows="1"></textarea>
       <button id="send-btn" onclick="sendMessage()">↑</button>
     </div>
-    <div class="input-hint" id="input-hint">Using <span id="model-hint">auto</span> model · Memory injection <span id="memory-hint">on</span></div>
+    <div class="input-hint" id="input-hint">Using <span id="model-hint">auto</span> model · Memory <span id="memory-hint">on</span> · <span id="limits-badge">—</span></div>
   </div>
 </div>
 
@@ -599,10 +599,17 @@
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, inject_memory: injectMemory, model_preference: modelPreference }),
       });
-      const data = await res.json();
       thinkingEl.remove();
-      appendMsg('assistant', data.response, data.interaction_id, data.memories_used || [], data.latency_ms, data.model);
-      setHeaderSub(`Last response: ${data.latency_ms}ms · ${data.model}`);
+      if (res.status === 429) {
+        const err = await res.json();
+        appendMsg('assistant', `⏱ ${err.detail}`, null, [], 0, '');
+        setHeaderSub('Rate limit reached');
+      } else {
+        const data = await res.json();
+        appendMsg('assistant', data.response, data.interaction_id, data.memories_used || [], data.latency_ms, data.model);
+        setHeaderSub(`Last: ${data.latency_ms}ms · ${data.model}`);
+        loadLimits();
+      }
     } catch(e) {
       thinkingEl.remove();
       appendMsg('assistant', '⚠ Could not reach backend. Make sure the server is running.', null, [], 0, '');
@@ -696,8 +703,18 @@
     document.getElementById('memory-hint').textContent = this.checked ? 'on' : 'off';
   });
 
+  // Load rate limit status
+  async function loadLimits() {
+    const res  = await fetch('/limits');
+    const data = await res.json();
+    const rem  = data.hourly.remaining;
+    document.getElementById('limits-badge').textContent = `${rem} msgs left this hour`;
+    document.getElementById('limits-badge').style.color = rem <= 5 ? 'var(--red)' : 'var(--muted)';
+  }
+
   // Init
   loadMemories();
+  loadLimits();
   fetch('/config').then(r=>r.json()).then(cfg => {
     if (!cfg.ollama_available) {
       document.getElementById('btn-ollama').disabled = true;

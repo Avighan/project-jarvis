@@ -5,9 +5,10 @@ Supports both Ollama (local) and Claude Haiku (API) for chat inference.
 """
 
 import sys, pathlib, uuid, sqlite3, time, os
+from collections import defaultdict
 sys.path.insert(0, str(pathlib.Path(__file__).parent.parent.parent))
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional
@@ -20,6 +21,34 @@ from core.extractor      import EXTRACTION_SCHEMA, EXTRACTION_PROMPT_TEMPLATE, _
 from core.ollama_client  import generate, pick_model
 
 app = FastAPI(title="Jarvis", docs_url=None, redoc_url=None)
+
+# ── Rate limiting (per IP) ─────────────────────────────────────────────────────
+RATE_LIMIT_HOURLY = int(os.environ.get("RATE_LIMIT_HOURLY", 20))   # max /ask calls per hour
+RATE_LIMIT_DAILY  = int(os.environ.get("RATE_LIMIT_DAILY",  100))  # max /ask calls per day
+
+_rate_store: dict = defaultdict(lambda: {"hour": [], "day": []})
+
+def _check_rate_limit(ip: str):
+    now = time.time()
+    bucket = _rate_store[ip]
+    bucket["hour"] = [t for t in bucket["hour"] if now - t < 3600]
+    bucket["day"]  = [t for t in bucket["day"]  if now - t < 86400]
+    if len(bucket["hour"]) >= RATE_LIMIT_HOURLY:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Hourly limit reached ({RATE_LIMIT_HOURLY} messages/hour). Try again later."
+        )
+    if len(bucket["day"]) >= RATE_LIMIT_DAILY:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Daily limit reached ({RATE_LIMIT_DAILY} messages/day). Come back tomorrow."
+        )
+    bucket["hour"].append(now)
+    bucket["day"].append(now)
+
+def _get_ip(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for")
+    return forwarded.split(",")[0].strip() if forwarded else request.client.host
 
 _default_db = pathlib.Path(os.environ.get("DB_PATH", str(pathlib.Path.home() / ".jarvis" / "jarvis_poc.db")))
 DB_PATH              = _default_db
@@ -89,6 +118,19 @@ async def index():
     return HTMLResponse((pathlib.Path(__file__).parent / "templates" / "index.html").read_text())
 
 
+@app.get("/limits")
+async def limits(request: Request):
+    ip  = _get_ip(request)
+    now = time.time()
+    bucket = _rate_store[ip]
+    used_hour = len([t for t in bucket["hour"] if now - t < 3600])
+    used_day  = len([t for t in bucket["day"]  if now - t < 86400])
+    return {
+        "hourly":  {"used": used_hour, "limit": RATE_LIMIT_HOURLY, "remaining": max(0, RATE_LIMIT_HOURLY - used_hour)},
+        "daily":   {"used": used_day,  "limit": RATE_LIMIT_DAILY,  "remaining": max(0, RATE_LIMIT_DAILY  - used_day)},
+    }
+
+
 @app.get("/config")
 async def config():
     """Return available models and backend capabilities."""
@@ -106,7 +148,8 @@ async def config():
 
 
 @app.post("/ask")
-async def ask(req: AskRequest):
+async def ask(req: AskRequest, request: Request):
+    _check_rate_limit(_get_ip(request))
     context_block = ""
     memories_used = []
 
@@ -186,7 +229,8 @@ async def delete_memory(memory_id: int):
 
 
 @app.post("/extract")
-async def extract(req: ExtractRequest):
+async def extract(req: ExtractRequest, request: Request):
+    _check_rate_limit(_get_ip(request))
     """Extract facts from pasted conversation. Does not auto-save."""
     result = _extract_with_claude(req.conversation)
     result.pop("_raw", None)
