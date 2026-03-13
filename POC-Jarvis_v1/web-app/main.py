@@ -156,6 +156,8 @@ async def ask(req: AskRequest, request: Request):
 
     if req.inject_memory:
         all_mems = ms.all_memories(DB_PATH)
+        for m in all_mems:
+            m.pop("embedding", None)
         if all_mems:
             hits = retrieve_tfidf(req.query, all_mems, top_n=4, confidence_weight=True)
             if hits:
