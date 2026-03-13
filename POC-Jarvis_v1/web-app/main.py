@@ -19,6 +19,7 @@ from core.retrieval      import retrieve_tfidf
 from core.working_memory import format_memories
 from core.extractor      import EXTRACTION_SCHEMA, EXTRACTION_PROMPT_TEMPLATE, _parse_json_response
 from core.ollama_client  import generate, pick_model
+from core.setup_db       import init_db
 
 app = FastAPI(title="Jarvis", docs_url=None, redoc_url=None)
 
@@ -56,8 +57,8 @@ ANTHROPIC_API_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
 CLAUDE_EXTRACT_MODEL = "claude-haiku-4-5-20251001"
 CLAUDE_CHAT_MODEL    = "claude-haiku-4-5-20251001"
 
-# Ensure DB directory exists
-DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+# Ensure DB is initialised (creates tables if first run)
+init_db(DB_PATH)
 
 
 def _claude_client():
