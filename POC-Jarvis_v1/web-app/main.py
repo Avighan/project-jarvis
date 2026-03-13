@@ -153,6 +153,7 @@ async def ask(req: AskRequest, request: Request):
     _check_rate_limit(_get_ip(request))
     context_block = ""
     memories_used = []
+    hits = []
 
     if req.inject_memory:
         all_mems = ms.all_memories(DB_PATH)
