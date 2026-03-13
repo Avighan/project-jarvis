@@ -196,7 +196,7 @@ async def ask(req: AskRequest, request: Request):
         jarvis_response=response,
         model_used=model_used,
         latency_ms=latency_ms,
-        memories_injected=[h["id"] for h in memories_used] if memories_used else None,
+        memories_injected=[h["id"] for h in hits] if hits else None,
         injection_format="json" if context_block else None,
         db_path=DB_PATH,
     )
