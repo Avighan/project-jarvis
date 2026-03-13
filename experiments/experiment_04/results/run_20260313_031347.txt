@@ -1,0 +1,4 @@
+Experiment 4 — Extraction Quality
+Run: 20260313_031347 | Model: phi3.5:latest
+Parse rate: 80% | Avg recall: 57% | Hallucinations: 4
+Decision: PARTIAL — add JSON repair post-processing; tighten schema

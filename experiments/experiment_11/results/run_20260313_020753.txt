@@ -1,0 +1,8 @@
+Experiment 11 — TF-IDF Deduplication at Write Time
+Run: 20260313_020753
+Thresholds tested: [0.3, 0.5, 0.7]
+  threshold=0.3: true_blocks=5/10  false_blocks=0/10
+  threshold=0.5: true_blocks=0/10  false_blocks=0/10
+  threshold=0.7: true_blocks=0/10  false_blocks=0/10
+Optimal threshold: 0.3
+Decision: PARTIAL — threshold exists but blocks 5/10 dups (need >=7)

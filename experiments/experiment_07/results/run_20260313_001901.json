@@ -1,0 +1,230 @@
+{
+  "experiment": "exp_07_graph_vs_flat",
+  "model": "llama3:latest",
+  "run_at": "20260313_001901",
+  "graph_wins": 2,
+  "flat_wins": 0,
+  "decision": "DEFER \u2014 graph wins only 2/10 at this scale. Use flat list for PoC. Revisit at 500+ memories.",
+  "results": [
+    {
+      "prompt_id": 1,
+      "prompt": "How should I calibrate the depth and length of my answers to this user?",
+      "needs": [
+        "A1",
+        "A2"
+      ],
+      "insight": "Expert user + prefers conciseness \u2192 skip scaffolding, be direct",
+      "flat_found": false,
+      "graph_found": true,
+      "winner": "graph",
+      "flat_retrieved": [
+        "user prefers concise direct answers without scaffolding",
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings",
+        "user has tried many productivity apps"
+      ],
+      "graph_retrieved": [
+        "user prefers concise direct answers without scaffolding",
+        "user prefers hiking in autumn",
+        "user has 10 years of Python engineering experience \u2014 expert "
+      ]
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "What local AI inference options does the user have for running Jarvis?",
+      "needs": [
+        "B1",
+        "B2"
+      ],
+      "insight": "Wants offline \u2192 uses Ollama with specific models already pulled",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user is learning causal inference and DoWhy library",
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user wants Jarvis to work offline with no cloud calls",
+        "user prefers hiking in autumn"
+      ],
+      "graph_retrieved": [
+        "user is learning causal inference and DoWhy library",
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user prefers using WAL mode in SQLite for concurrent writes",
+        "user wants to add a personal causal knowledge graph in Phase"
+      ]
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "Should I send a notification to this user right now?",
+      "needs": [
+        "C1",
+        "C2"
+      ],
+      "insight": "Morning focus blocks + dislikes interruptions \u2192 check time before alerting",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings",
+        "user has tried many productivity apps",
+        "user is learning causal inference and DoWhy library"
+      ],
+      "graph_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings"
+      ]
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "What SQLite configuration should the memory store use?",
+      "needs": [
+        "D1",
+        "D2"
+      ],
+      "insight": "Building SQLite memory store + prefers WAL mode \u2192 use WAL for concurrent writes",
+      "flat_found": true,
+      "graph_found": true,
+      "winner": "tie",
+      "flat_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user prefers using WAL mode in SQLite for concurrent writes"
+      ],
+      "graph_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user prefers using WAL mode in SQLite for concurrent writes"
+      ]
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "What should the user tackle next on their AI roadmap?",
+      "needs": [
+        "E1",
+        "E2"
+      ],
+      "insight": "Learning causal inference + plans causal graph in Phase 3 \u2192 connected progression",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings",
+        "user has tried many productivity apps",
+        "user is learning causal inference and DoWhy library"
+      ],
+      "graph_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings"
+      ]
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Is this user likely to be working right now at 9am?",
+      "needs": [
+        "C1",
+        "C2"
+      ],
+      "insight": "Morning focus blocks \u2192 yes, likely in deep work",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings",
+        "user has tried many productivity apps",
+        "user is learning causal inference and DoWhy library"
+      ],
+      "graph_retrieved": [
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings"
+      ]
+    },
+    {
+      "prompt_id": 7,
+      "prompt": "How should Jarvis respond to a beginner-level question from this user?",
+      "needs": [
+        "A1",
+        "A2"
+      ],
+      "insight": "Expert level + hates scaffolding \u2192 still be direct even on basic questions",
+      "flat_found": false,
+      "graph_found": true,
+      "winner": "graph",
+      "flat_retrieved": [
+        "user has 10 years of Python engineering experience \u2014 expert ",
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user wants Jarvis to work offline with no cloud calls",
+        "user prefers hiking in autumn"
+      ],
+      "graph_retrieved": [
+        "user has 10 years of Python engineering experience \u2014 expert ",
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user prefers concise direct answers without scaffolding",
+        "user prefers using WAL mode in SQLite for concurrent writes"
+      ]
+    },
+    {
+      "prompt_id": 8,
+      "prompt": "What database transaction approach should I use in the memory write path?",
+      "needs": [
+        "D1",
+        "D2"
+      ],
+      "insight": "SQLite store + WAL mode preference \u2192 use conn.execute with WAL and commit",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis"
+      ],
+      "graph_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis"
+      ]
+    },
+    {
+      "prompt_id": 9,
+      "prompt": "Can Jarvis answer questions about Granger causality for this user?",
+      "needs": [
+        "E1",
+        "E2"
+      ],
+      "insight": "User is learning it + plans to use it \u2192 can engage at intermediate level",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user wants Jarvis to work offline with no cloud calls",
+        "user prefers hiking in autumn",
+        "user drinks coffee in the mornings"
+      ],
+      "graph_retrieved": [
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user wants Jarvis to work offline with no cloud calls",
+        "user's machine has Ollama with llama3, zephyr, codegemma mod",
+        "user prefers using WAL mode in SQLite for concurrent writes"
+      ]
+    },
+    {
+      "prompt_id": 10,
+      "prompt": "What response format should Jarvis use for a Python code question?",
+      "needs": [
+        "A1",
+        "A2"
+      ],
+      "insight": "Expert + no scaffolding \u2192 code directly, no explanation unless asked",
+      "flat_found": false,
+      "graph_found": false,
+      "winner": "neither",
+      "flat_retrieved": [
+        "user has 10 years of Python engineering experience \u2014 expert ",
+        "user is building a SQLite-backed memory store for Jarvis",
+        "user wants Jarvis to work offline with no cloud calls"
+      ],
+      "graph_retrieved": [
+        "user has 10 years of Python engineering experience \u2014 expert ",
+        "user is building a SQLite-backed memory store for Jarvis"
+      ]
+    }
+  ]
+}

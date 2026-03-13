@@ -1,0 +1,4 @@
+Experiment 4 — Extraction Quality
+Run: 20260313_004148 | Model: llama3:latest
+Parse rate: 100% | Avg recall: 57% | Hallucinations: 1
+Decision: PARTIAL — add JSON repair post-processing; tighten schema

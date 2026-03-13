@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+.env
+*.db
+*.sqlite
+node_modules/
+.DS_Store
+dist/
+build/
+*.egg-info/
+.venv/
+venv/
+POC-Jarvis_v1/desktop-app/node_modules/

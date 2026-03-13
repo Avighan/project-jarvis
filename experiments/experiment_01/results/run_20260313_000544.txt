@@ -1,0 +1,4 @@
+Experiment 1 — Memory Injection
+Run: 20260313_000544 | Model: llama3:latest
+B wins: 0/10 | Avg A: 0.00 | Avg B: 0.00
+Decision: FAIL — memory injection not improving responses; revisit premise

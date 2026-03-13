@@ -1,0 +1,402 @@
+{
+  "experiment": "exp_11_dedup_threshold",
+  "run_at": "20260313_020753",
+  "thresholds_tested": [
+    0.3,
+    0.5,
+    0.7
+  ],
+  "optimal_threshold": 0.3,
+  "optimal_true_blocks": 5,
+  "pass_criterion": "true_blocks >= 7 AND false_blocks == 0 at some threshold",
+  "decision": "PARTIAL \u2014 threshold exists but blocks 5/10 dups (need >=7)",
+  "threshold_results": {
+    "0.3": {
+      "threshold": 0.3,
+      "true_blocks": 5,
+      "false_blocks": 0,
+      "dup_details": [
+        {
+          "text": "user likes concise answers without fluff",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user is an expert Python developer with a decade of experience",
+          "blocked": true,
+          "max_sim": 0.4286,
+          "correct": true
+        },
+        {
+          "text": "user is working on Project Jarvis, an AI memory system",
+          "blocked": true,
+          "max_sim": 0.375,
+          "correct": true
+        },
+        {
+          "text": "user does focused work in the mornings",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": false
+        },
+        {
+          "text": "user avoids unnecessary Python packages",
+          "blocked": false,
+          "max_sim": 0.2857,
+          "correct": false
+        },
+        {
+          "text": "user uses local Ollama on their MacBook Pro",
+          "blocked": true,
+          "max_sim": 0.375,
+          "correct": true
+        },
+        {
+          "text": "user wants answers without excessive explanation",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user uses Linear to manage their tasks",
+          "blocked": true,
+          "max_sim": 0.5,
+          "correct": true
+        },
+        {
+          "text": "user gets disrupted when switching between tasks",
+          "blocked": false,
+          "max_sim": 0.25,
+          "correct": false
+        },
+        {
+          "text": "user wants real code, not pseudocode examples",
+          "blocked": true,
+          "max_sim": 0.4444,
+          "correct": true
+        }
+      ],
+      "uniq_details": [
+        {
+          "text": "user has a dog named Max",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user reads technical papers on weekends",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user is interested in Rust but hasn't used it recently",
+          "blocked": false,
+          "max_sim": 0.1111,
+          "correct": true
+        },
+        {
+          "text": "user grew up in London",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user uses a standing desk setup",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has worked at startups primarily",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user mentioned wanting to add voice input to Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user drinks coffee not tea",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has tried several AI tools before Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user prefers Python type hints in all function signatures",
+          "blocked": false,
+          "max_sim": 0.2,
+          "correct": true
+        }
+      ]
+    },
+    "0.5": {
+      "threshold": 0.5,
+      "true_blocks": 0,
+      "false_blocks": 0,
+      "dup_details": [
+        {
+          "text": "user likes concise answers without fluff",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user is an expert Python developer with a decade of experience",
+          "blocked": false,
+          "max_sim": 0.4286,
+          "correct": false
+        },
+        {
+          "text": "user is working on Project Jarvis, an AI memory system",
+          "blocked": false,
+          "max_sim": 0.375,
+          "correct": false
+        },
+        {
+          "text": "user does focused work in the mornings",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": false
+        },
+        {
+          "text": "user avoids unnecessary Python packages",
+          "blocked": false,
+          "max_sim": 0.2857,
+          "correct": false
+        },
+        {
+          "text": "user uses local Ollama on their MacBook Pro",
+          "blocked": false,
+          "max_sim": 0.375,
+          "correct": false
+        },
+        {
+          "text": "user wants answers without excessive explanation",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user uses Linear to manage their tasks",
+          "blocked": false,
+          "max_sim": 0.5,
+          "correct": false
+        },
+        {
+          "text": "user gets disrupted when switching between tasks",
+          "blocked": false,
+          "max_sim": 0.25,
+          "correct": false
+        },
+        {
+          "text": "user wants real code, not pseudocode examples",
+          "blocked": false,
+          "max_sim": 0.4444,
+          "correct": false
+        }
+      ],
+      "uniq_details": [
+        {
+          "text": "user has a dog named Max",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user reads technical papers on weekends",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user is interested in Rust but hasn't used it recently",
+          "blocked": false,
+          "max_sim": 0.1111,
+          "correct": true
+        },
+        {
+          "text": "user grew up in London",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user uses a standing desk setup",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has worked at startups primarily",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user mentioned wanting to add voice input to Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user drinks coffee not tea",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has tried several AI tools before Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user prefers Python type hints in all function signatures",
+          "blocked": false,
+          "max_sim": 0.2,
+          "correct": true
+        }
+      ]
+    },
+    "0.7": {
+      "threshold": 0.7,
+      "true_blocks": 0,
+      "false_blocks": 0,
+      "dup_details": [
+        {
+          "text": "user likes concise answers without fluff",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user is an expert Python developer with a decade of experience",
+          "blocked": false,
+          "max_sim": 0.4286,
+          "correct": false
+        },
+        {
+          "text": "user is working on Project Jarvis, an AI memory system",
+          "blocked": false,
+          "max_sim": 0.375,
+          "correct": false
+        },
+        {
+          "text": "user does focused work in the mornings",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": false
+        },
+        {
+          "text": "user avoids unnecessary Python packages",
+          "blocked": false,
+          "max_sim": 0.2857,
+          "correct": false
+        },
+        {
+          "text": "user uses local Ollama on their MacBook Pro",
+          "blocked": false,
+          "max_sim": 0.375,
+          "correct": false
+        },
+        {
+          "text": "user wants answers without excessive explanation",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": false
+        },
+        {
+          "text": "user uses Linear to manage their tasks",
+          "blocked": false,
+          "max_sim": 0.5,
+          "correct": false
+        },
+        {
+          "text": "user gets disrupted when switching between tasks",
+          "blocked": false,
+          "max_sim": 0.25,
+          "correct": false
+        },
+        {
+          "text": "user wants real code, not pseudocode examples",
+          "blocked": false,
+          "max_sim": 0.4444,
+          "correct": false
+        }
+      ],
+      "uniq_details": [
+        {
+          "text": "user has a dog named Max",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user reads technical papers on weekends",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user is interested in Rust but hasn't used it recently",
+          "blocked": false,
+          "max_sim": 0.1111,
+          "correct": true
+        },
+        {
+          "text": "user grew up in London",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user uses a standing desk setup",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has worked at startups primarily",
+          "blocked": false,
+          "max_sim": 0.1429,
+          "correct": true
+        },
+        {
+          "text": "user mentioned wanting to add voice input to Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user drinks coffee not tea",
+          "blocked": false,
+          "max_sim": 0.125,
+          "correct": true
+        },
+        {
+          "text": "user has tried several AI tools before Jarvis",
+          "blocked": false,
+          "max_sim": 0.2222,
+          "correct": true
+        },
+        {
+          "text": "user prefers Python type hints in all function signatures",
+          "blocked": false,
+          "max_sim": 0.2,
+          "correct": true
+        }
+      ]
+    }
+  }
+}

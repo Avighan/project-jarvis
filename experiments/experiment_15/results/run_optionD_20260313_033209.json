@@ -1,0 +1,388 @@
+{
+  "experiment": "exp_15c_option_d_claude_api",
+  "model": "claude-haiku-4-5-20251001",
+  "run_at": "20260313_033209",
+  "parse_rate": 1.0,
+  "avg_recall": 0.7407407407407408,
+  "total_hallucinations": 6,
+  "total_input_tokens": 2919,
+  "total_output_tokens": 789,
+  "estimated_cost_usd": 0.001716,
+  "decision": "PASS \u2014 Claude API beats local baseline; use as extraction fallback",
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "description": "Technical discussion revealing preferences and project context",
+      "parse_success": true,
+      "latency_ms": 1883,
+      "input_tokens": 611,
+      "output_tokens": 193,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "prefers minimal, non-overengineered solutions",
+            "confidence": 0.9
+          },
+          {
+            "fact": "prefers code output without preamble",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "SQLite schema design",
+            "level": "intermediate",
+            "confidence": 0.6
+          },
+          {
+            "topic": "system architecture",
+            "level": "intermediate",
+            "confidence": 0.5
+          }
+        ],
+        "goals": [
+          {
+            "goal": "build a personal AI memory system called Project Jarvis",
+            "confidence": 0.9
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "designs systems with confidence scoring and typed relationships",
+            "confidence": 0.7
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [
+          "prefers minimal schemas",
+          "dislikes over-engineering",
+          "wants code directly without preamble"
+        ],
+        "goals": [
+          "building Project Jarvis \u2014 personal AI memory system"
+        ],
+        "expertise": [],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 3,
+          "extracted": 2,
+          "found": 2,
+          "recall": 0.6666666666666666
+        },
+        "goals": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 2,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": [
+        "prefers minimal, non-overengineered solutions",
+        "prefers code output without preamble"
+      ]
+    },
+    {
+      "conversation_id": 2,
+      "description": "Planning conversation revealing expertise and work style",
+      "parse_success": true,
+      "latency_ms": 1606,
+      "input_tokens": 599,
+      "output_tokens": 177,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "prefers 2-hour focused work blocks in the morning",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "Python",
+            "level": "expert",
+            "confidence": 0.9
+          }
+        ],
+        "goals": [
+          {
+            "goal": "validate that memory injection improves responses before building full implementation",
+            "confidence": 0.9
+          },
+          {
+            "goal": "develop a proof of concept (PoC) timeline for Jarvis",
+            "confidence": 0.9
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "prioritizes derisking technical assumptions early in projects",
+            "confidence": 0.8
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [
+          "works in 2-hour focused morning blocks"
+        ],
+        "goals": [
+          "prove memory injection works before building more"
+        ],
+        "expertise": [
+          "senior Python engineer, ~10 years experience"
+        ],
+        "patterns": [
+          "focused morning work sessions"
+        ]
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "goals": {
+          "expected": 1,
+          "extracted": 2,
+          "found": 1,
+          "recall": 1.0
+        },
+        "expertise": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "patterns": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 0,
+          "recall": 0.0
+        }
+      },
+      "hallucinations": [
+        "prioritizes derisking technical assumptions early in projects"
+      ]
+    },
+    {
+      "conversation_id": 3,
+      "description": "Research conversation with domain knowledge signals",
+      "parse_success": true,
+      "latency_ms": 1995,
+      "input_tokens": 607,
+      "output_tokens": 202,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "prefers minimal dependencies, favors numpy for proof-of-concept work",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "TF-IDF retrieval",
+            "level": "intermediate",
+            "confidence": 0.8
+          },
+          {
+            "topic": "BM25 algorithm",
+            "level": "intermediate",
+            "confidence": 0.8
+          },
+          {
+            "topic": "Java",
+            "level": "intermediate",
+            "confidence": 0.7
+          },
+          {
+            "topic": "numpy",
+            "level": "intermediate",
+            "confidence": 0.6
+          }
+        ],
+        "goals": [
+          {
+            "goal": "build a proof-of-concept using TF-IDF retrieval",
+            "confidence": 0.8
+          }
+        ],
+        "patterns": []
+      },
+      "expected": {
+        "preferences": [
+          "zero extra dependencies for PoC",
+          "use numpy not sklearn"
+        ],
+        "goals": [],
+        "expertise": [
+          "knows TF-IDF basics",
+          "has used BM25 in Java"
+        ],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 2,
+          "extracted": 1,
+          "found": 2,
+          "recall": 1.0
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 2,
+          "extracted": 4,
+          "found": 1,
+          "recall": 0.5
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": [
+        "prefers minimal dependencies, favors numpy for proof-of-concept work",
+        "BM25 algorithm"
+      ]
+    },
+    {
+      "conversation_id": 4,
+      "description": "Personal conversation with minimal extractable technical facts",
+      "parse_success": true,
+      "latency_ms": 3887,
+      "input_tokens": 570,
+      "output_tokens": 182,
+      "extracted": {
+        "preferences": [],
+        "expertise": [
+          {
+            "topic": "coding/architecture",
+            "level": "intermediate",
+            "confidence": 0.6
+          }
+        ],
+        "goals": [
+          {
+            "goal": "make progress on Jarvis coding project architecture",
+            "confidence": 0.8
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "needs at least 3 uninterrupted hours to make real progress on architecture problems",
+            "confidence": 0.9
+          },
+          {
+            "pattern": "struggles to get deep work done when schedule has too many meetings",
+            "confidence": 0.8
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [],
+        "goals": [],
+        "expertise": [],
+        "patterns": [
+          "needs 3+ uninterrupted hours for architecture work",
+          "meeting-heavy weeks reduce deep work"
+        ]
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 2,
+          "extracted": 2,
+          "found": 1,
+          "recall": 0.5
+        }
+      },
+      "hallucinations": [
+        "struggles to get deep work done when schedule has too many meetings"
+      ]
+    },
+    {
+      "conversation_id": 5,
+      "description": "Edge case: ambiguous conversation, minimal extractable facts",
+      "parse_success": true,
+      "latency_ms": 669,
+      "input_tokens": 532,
+      "output_tokens": 35,
+      "extracted": {
+        "preferences": [],
+        "expertise": [],
+        "goals": [],
+        "patterns": []
+      },
+      "expected": {
+        "preferences": [],
+        "goals": [],
+        "expertise": [],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": []
+    }
+  ]
+}

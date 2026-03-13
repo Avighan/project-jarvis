@@ -1,0 +1,334 @@
+{
+  "experiment": "exp_04_extraction_quality",
+  "model": "phi3.5:latest",
+  "run_at": "20260313_031347",
+  "parse_rate": 0.8,
+  "avg_recall": 0.5740740740740741,
+  "total_hallucinations": 4,
+  "decision": "PARTIAL \u2014 add JSON repair post-processing; tighten schema",
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "description": "Technical discussion revealing preferences and project context",
+      "parse_success": true,
+      "latency_ms": 14666,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "prefers direct code without preamble",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "SQLite schema design for memory systems",
+            "level": "intermediate",
+            "confidence": 0.7
+          }
+        ],
+        "goals": [
+          {
+            "goal": "Build a personal AI memory system called Project Jarvis",
+            "confidence": 0.9
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "requests minimal and efficient code for database schema design without unnecessary explanations or preamble",
+            "confidence": 0.8
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [
+          "prefers minimal schemas",
+          "dislikes over-engineering",
+          "wants code directly without preamble"
+        ],
+        "goals": [
+          "building Project Jarvis \u2014 personal AI memory system"
+        ],
+        "expertise": [],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 3,
+          "extracted": 1,
+          "found": 2,
+          "recall": 0.6666666666666666
+        },
+        "goals": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": [
+        "requests minimal and efficient code for database schema design without unnecessary explanations or preamble"
+      ]
+    },
+    {
+      "conversation_id": 2,
+      "description": "Planning conversation revealing expertise and work style",
+      "parse_success": true,
+      "latency_ms": 3542,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "works best with structured, short focus periods",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "Python programming for Jarvis project",
+            "level": "expert",
+            "confidence": 0.9
+          }
+        ],
+        "goals": [
+          {
+            "goal": "Prove the effectiveness of memory injection before further development",
+            "confidence": 0.9
+          },
+          {
+            "goal": "Complete focused work blocks in two hours each morning",
+            "confidence": 0.9
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "Works best with structured, short focus periods (2-hour blocks)",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [
+          "works in 2-hour focused morning blocks"
+        ],
+        "goals": [
+          "prove memory injection works before building more"
+        ],
+        "expertise": [
+          "senior Python engineer, ~10 years experience"
+        ],
+        "patterns": [
+          "focused morning work sessions"
+        ]
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "goals": {
+          "expected": 1,
+          "extracted": 2,
+          "found": 1,
+          "recall": 1.0
+        },
+        "expertise": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 1,
+          "recall": 1.0
+        },
+        "patterns": {
+          "expected": 1,
+          "extracted": 1,
+          "found": 0,
+          "recall": 0.0
+        }
+      },
+      "hallucinations": [
+        "works best with structured, short focus periods",
+        "Works best with structured, short focus periods (2-hour blocks)"
+      ]
+    },
+    {
+      "conversation_id": 3,
+      "description": "Research conversation with domain knowledge signals",
+      "parse_success": false,
+      "latency_ms": 3094,
+      "extracted": {
+        "preferences": [],
+        "expertise": [],
+        "goals": [],
+        "patterns": [],
+        "_parse_failed": true
+      },
+      "expected": {
+        "preferences": [
+          "zero extra dependencies for PoC",
+          "use numpy not sklearn"
+        ],
+        "goals": [],
+        "expertise": [
+          "knows TF-IDF basics",
+          "has used BM25 in Java"
+        ],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 2,
+          "extracted": 0,
+          "found": 0,
+          "recall": 0.0
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 2,
+          "extracted": 0,
+          "found": 0,
+          "recall": 0.0
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": []
+    },
+    {
+      "conversation_id": 4,
+      "description": "Personal conversation with minimal extractable technical facts",
+      "parse_success": true,
+      "latency_ms": 3404,
+      "extracted": {
+        "preferences": [
+          {
+            "fact": "prefers having long periods for focused tasks like coding",
+            "confidence": 0.9
+          }
+        ],
+        "expertise": [
+          {
+            "topic": "Jarvis coding related to architecture problems",
+            "level": "novice|intermediate|expert",
+            "confidence": 0.7
+          }
+        ],
+        "goals": [
+          {
+            "goal": "make real progress on architecture problems with Jarvis code",
+            "confidence": 0.9
+          }
+        ],
+        "patterns": [
+          {
+            "pattern": "needs at least 3 uninterrupted hours for deep work like coding",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "expected": {
+        "preferences": [],
+        "goals": [],
+        "expertise": [],
+        "patterns": [
+          "needs 3+ uninterrupted hours for architecture work",
+          "meeting-heavy weeks reduce deep work"
+        ]
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 1,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 2,
+          "extracted": 1,
+          "found": 1,
+          "recall": 0.5
+        }
+      },
+      "hallucinations": [
+        "prefers having long periods for focused tasks like coding"
+      ]
+    },
+    {
+      "conversation_id": 5,
+      "description": "Edge case: ambiguous conversation, minimal extractable facts",
+      "parse_success": true,
+      "latency_ms": 1847,
+      "extracted": {
+        "preferences": [],
+        "expertise": [],
+        "goals": [],
+        "patterns": []
+      },
+      "expected": {
+        "preferences": [],
+        "goals": [],
+        "expertise": [],
+        "patterns": []
+      },
+      "metrics": {
+        "preferences": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "goals": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "expertise": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        },
+        "patterns": {
+          "expected": 0,
+          "extracted": 0,
+          "found": 0,
+          "recall": null
+        }
+      },
+      "hallucinations": []
+    }
+  ]
+}

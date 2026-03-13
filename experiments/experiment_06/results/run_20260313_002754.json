@@ -1,0 +1,307 @@
+{
+  "experiment": "exp_06_task_classification",
+  "model": "llama3:latest",
+  "run_at": "20260313_002754",
+  "accuracy": 0.9,
+  "per_class": {
+    "PLANNING": 1.0,
+    "RESEARCH": 1.0,
+    "EXECUTION": 0.8,
+    "EMOTIONAL": 1.0,
+    "REFLECTION": 1.0,
+    "LEARNING": 0.6
+  },
+  "confusion": {
+    "PLANNING": {
+      "PLANNING": 5,
+      "RESEARCH": 0,
+      "EXECUTION": 0,
+      "EMOTIONAL": 0,
+      "REFLECTION": 0,
+      "LEARNING": 0
+    },
+    "RESEARCH": {
+      "PLANNING": 0,
+      "RESEARCH": 5,
+      "EXECUTION": 0,
+      "EMOTIONAL": 0,
+      "REFLECTION": 0,
+      "LEARNING": 0
+    },
+    "EXECUTION": {
+      "PLANNING": 0,
+      "RESEARCH": 0,
+      "EXECUTION": 4,
+      "EMOTIONAL": 0,
+      "REFLECTION": 1,
+      "LEARNING": 0
+    },
+    "EMOTIONAL": {
+      "PLANNING": 0,
+      "RESEARCH": 0,
+      "EXECUTION": 0,
+      "EMOTIONAL": 5,
+      "REFLECTION": 0,
+      "LEARNING": 0
+    },
+    "REFLECTION": {
+      "PLANNING": 0,
+      "RESEARCH": 0,
+      "EXECUTION": 0,
+      "EMOTIONAL": 0,
+      "REFLECTION": 5,
+      "LEARNING": 0
+    },
+    "LEARNING": {
+      "PLANNING": 0,
+      "RESEARCH": 2,
+      "EXECUTION": 0,
+      "EMOTIONAL": 0,
+      "REFLECTION": 0,
+      "LEARNING": 3
+    }
+  },
+  "decision": "PASS (90% \u2265 80%) \u2014 disinhibition model is viable. Proceed with task classification in retrieval.py.",
+  "results": [
+    {
+      "prompt": "Help me structure my work for this week given I have 3 deadlines.",
+      "true": "PLANNING",
+      "predicted": "PLANNING",
+      "raw": "PLANNING",
+      "correct": true,
+      "latency_ms": 4387
+    },
+    {
+      "prompt": "What should I prioritise between the memory graph and the MCP server?",
+      "true": "PLANNING",
+      "predicted": "PLANNING",
+      "raw": "PLANNING",
+      "correct": true,
+      "latency_ms": 302
+    },
+    {
+      "prompt": "Create a 2-week sprint plan for the Jarvis PoC.",
+      "true": "PLANNING",
+      "predicted": "PLANNING",
+      "raw": "PLANNING",
+      "correct": true,
+      "latency_ms": 299
+    },
+    {
+      "prompt": "How should I sequence the 8 PoC experiments?",
+      "true": "PLANNING",
+      "predicted": "PLANNING",
+      "raw": "PLANNING",
+      "correct": true,
+      "latency_ms": 298
+    },
+    {
+      "prompt": "I need to plan my month \u2014 what should I tackle first?",
+      "true": "PLANNING",
+      "predicted": "PLANNING",
+      "raw": "PLANNING",
+      "correct": true,
+      "latency_ms": 298
+    },
+    {
+      "prompt": "What do I know about transformer attention from previous research?",
+      "true": "RESEARCH",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": true,
+      "latency_ms": 268
+    },
+    {
+      "prompt": "Find me information about Granger causality methods in 2024.",
+      "true": "RESEARCH",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": true,
+      "latency_ms": 262
+    },
+    {
+      "prompt": "What's the current state of local LLM memory implementations?",
+      "true": "RESEARCH",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": true,
+      "latency_ms": 262
+    },
+    {
+      "prompt": "Summarise what I've read about STABLE gating for LoRA.",
+      "true": "RESEARCH",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": true,
+      "latency_ms": 264
+    },
+    {
+      "prompt": "What approaches exist for continual learning in neural networks?",
+      "true": "RESEARCH",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": true,
+      "latency_ms": 263
+    },
+    {
+      "prompt": "Create a Linear ticket for the SQLite schema migration bug.",
+      "true": "EXECUTION",
+      "predicted": "EXECUTION",
+      "raw": "EXECUTION",
+      "correct": true,
+      "latency_ms": 260
+    },
+    {
+      "prompt": "Write the Python code for the memory write-back function.",
+      "true": "EXECUTION",
+      "predicted": "EXECUTION",
+      "raw": "EXECUTION",
+      "correct": true,
+      "latency_ms": 262
+    },
+    {
+      "prompt": "Send a summary of today's progress to my notes.",
+      "true": "EXECUTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": false,
+      "latency_ms": 265
+    },
+    {
+      "prompt": "Run the experiment_01 script and show me the output.",
+      "true": "EXECUTION",
+      "predicted": "EXECUTION",
+      "raw": "EXECUTION",
+      "correct": true,
+      "latency_ms": 261
+    },
+    {
+      "prompt": "Create a new file called retrieval_v2.py with the BM25 implementation.",
+      "true": "EXECUTION",
+      "predicted": "EXECUTION",
+      "raw": "EXECUTION",
+      "correct": true,
+      "latency_ms": 273
+    },
+    {
+      "prompt": "I'm feeling really overwhelmed with everything on my plate right now.",
+      "true": "EMOTIONAL",
+      "predicted": "EMOTIONAL",
+      "raw": "EMOTIONAL",
+      "correct": true,
+      "latency_ms": 312
+    },
+    {
+      "prompt": "I'm frustrated that the memory injection isn't working as expected.",
+      "true": "EMOTIONAL",
+      "predicted": "EMOTIONAL",
+      "raw": "EMOTIONAL",
+      "correct": true,
+      "latency_ms": 336
+    },
+    {
+      "prompt": "Had a great day \u2014 everything clicked and the PoC is coming together.",
+      "true": "EMOTIONAL",
+      "predicted": "EMOTIONAL",
+      "raw": "EMOTIONAL",
+      "correct": true,
+      "latency_ms": 310
+    },
+    {
+      "prompt": "I'm worried I'm building the wrong thing and wasting time.",
+      "true": "EMOTIONAL",
+      "predicted": "EMOTIONAL",
+      "raw": "EMOTIONAL",
+      "correct": true,
+      "latency_ms": 308
+    },
+    {
+      "prompt": "Feeling burnt out. Not sure how to get my motivation back.",
+      "true": "EMOTIONAL",
+      "predicted": "EMOTIONAL",
+      "raw": "EMOTIONAL",
+      "correct": true,
+      "latency_ms": 312
+    },
+    {
+      "prompt": "How have my coding habits changed over the last month?",
+      "true": "REFLECTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": true,
+      "latency_ms": 289
+    },
+    {
+      "prompt": "Looking back at this week, what went well and what didn't?",
+      "true": "REFLECTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": true,
+      "latency_ms": 273
+    },
+    {
+      "prompt": "What patterns have I noticed in how I approach architecture decisions?",
+      "true": "REFLECTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": true,
+      "latency_ms": 271
+    },
+    {
+      "prompt": "Have my priorities shifted since I started working on Jarvis?",
+      "true": "REFLECTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": true,
+      "latency_ms": 270
+    },
+    {
+      "prompt": "What have I learned from the first 3 PoC experiments?",
+      "true": "REFLECTION",
+      "predicted": "REFLECTION",
+      "raw": "REFLECTION",
+      "correct": true,
+      "latency_ms": 271
+    },
+    {
+      "prompt": "Explain how Granger causality works and when it applies.",
+      "true": "LEARNING",
+      "predicted": "LEARNING",
+      "raw": "LEARNING",
+      "correct": true,
+      "latency_ms": 271
+    },
+    {
+      "prompt": "How does TF-IDF differ from BM25 scoring?",
+      "true": "LEARNING",
+      "predicted": "LEARNING",
+      "raw": "LEARNING",
+      "correct": true,
+      "latency_ms": 271
+    },
+    {
+      "prompt": "Teach me the basics of the Ollama embeddings API.",
+      "true": "LEARNING",
+      "predicted": "LEARNING",
+      "raw": "LEARNING",
+      "correct": true,
+      "latency_ms": 270
+    },
+    {
+      "prompt": "What is the VIP-cell 'brake on the brake' mechanism in neuroscience?",
+      "true": "LEARNING",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": false,
+      "latency_ms": 368
+    },
+    {
+      "prompt": "How does LoRA fine-tuning work at a high level?",
+      "true": "LEARNING",
+      "predicted": "RESEARCH",
+      "raw": "RESEARCH",
+      "correct": false,
+      "latency_ms": 273
+    }
+  ]
+}

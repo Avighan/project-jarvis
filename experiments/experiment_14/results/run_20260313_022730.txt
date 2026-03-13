@@ -1,0 +1,8 @@
+Experiment 14 — Adversarial Challenge Agent
+Run: 20260313_022730 | Model: llama3:latest
+B wins: 6/6 (PLANNING: 3/3, RESEARCH: 3/3)
+Avg score A: 2.33 | Avg score B: 3.83
+  PLANNING A:2.33 B:4.00
+  RESEARCH A:2.33 B:3.67
+Latency factor: 3.2x
+Decision: PASS — adversarial agent improves output quality on 6/6 prompts; build into Orchestration Engine for RESEARCH/PLANNING tasks (PLANNING: 3/3, RESEARCH: 3/3)

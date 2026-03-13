@@ -1,0 +1,6 @@
+Experiment 13 — CausalRAG
+Run: 20260313_021951 | Model: llama3:latest
+B wins: 1/8 (causal: 0/4, intervention: 1/4)
+Avg score A: 4.00 | Avg score B: 4.00 | Delta: +0.00
+B cites causality: 7/8
+Decision: FAIL — LLM ignores causal context (avg_B=4.00 vs avg_A=4.00, delta=+0.00, B_wins=1/8)

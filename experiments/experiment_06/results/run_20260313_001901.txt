@@ -1,0 +1,5 @@
+Experiment 6 — Task Classification
+Run: 20260313_001901 | Model: llama3:latest
+Overall accuracy: 83%
+Per-class: {'PLANNING': '100%', 'RESEARCH': '40%', 'EXECUTION': '80%', 'EMOTIONAL': '80%', 'REFLECTION': '100%', 'LEARNING': '100%'}
+Decision: PASS (83% ≥ 80%) — disinhibition model is viable. Proceed with task classification in retrieval.py.

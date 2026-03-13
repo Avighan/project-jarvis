@@ -1,0 +1,7 @@
+Experiment 10 — Auto-Contradiction Detection
+Run: 20260313_020922 | Model: llama3:latest
+Threshold: 0.4
+True positives: 0/5 | False positives: 0/5
+False negatives: 5/5 | True negatives: 5/5
+Edges in DB: 0
+Decision: PARTIAL — detection works but needs threshold tuning

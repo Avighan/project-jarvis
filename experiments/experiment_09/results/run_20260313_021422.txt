@@ -1,0 +1,5 @@
+Experiment 9 — Disinhibition Routing vs Flat TF-IDF
+Run: 20260313_021422 | Model: llama3:latest
+B wins: 11/12 | A wins: 0/12 | Ties: 1/12
+Correct classifications: 12/12
+Decision: PASS — use disinhibition routing in jarvis_cli.py

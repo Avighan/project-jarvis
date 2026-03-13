@@ -1,0 +1,7 @@
+Experiment 12 — Graph-Augmented Retrieval at 100+ Memories
+Run: 20260313_021616 | Model: llama3:latest
+Memories: 101 | Edges: 20
+Graph wins (retrieval advantage): 5/10
+Judge wins B: 4/10
+Avg score A: 4.40 | Avg score B: 4.60
+Decision: PARTIAL — marginal improvement (graph_wins=5/10, avg_B=4.60 vs avg_A=4.40); revisit at 300+ memories

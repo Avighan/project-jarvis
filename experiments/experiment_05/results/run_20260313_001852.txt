@@ -1,0 +1,4 @@
+Experiment 5 — Retrieval
+Run: 20260313_001852
+TF-IDF: Recall@1=80% Recall@5=90%
+Decision: PASS — TF-IDF Recall@5 = 90% ≥ 75%. Use TF-IDF for PoC.

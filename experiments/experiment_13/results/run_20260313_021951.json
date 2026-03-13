@@ -1,0 +1,192 @@
+{
+  "experiment": "exp_13_causal_rag",
+  "model": "llama3:latest",
+  "run_at": "20260313_021951",
+  "causal_graph_edges": 8,
+  "test_questions": 8,
+  "b_wins": 1,
+  "b_wins_causal": 0,
+  "b_wins_intervention": 1,
+  "avg_score_a": 4.0,
+  "avg_score_b": 4.0,
+  "delta": 0.0,
+  "b_cites_causality": 7,
+  "decision": "FAIL \u2014 LLM ignores causal context (avg_B=4.00 vs avg_A=4.00, delta=+0.00, B_wins=1/8)",
+  "results": [
+    {
+      "query_id": 1,
+      "type": "causal",
+      "question": "Why am I often tired and unfocused in the morning after late nights?",
+      "relevant_edges": 5,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "The eternal struggle of being a night owl! Late nights can indeed leave you feeling tired and unfocused in the morning. Here are some reasons why:\n\n1. **Sleep Inertia**: When you wake up from a late night, your body takes time to transition from a state of sleepiness to alertness. This phenomenon is called sleep inertia, which can last for about 30 minutes.\n2. **Circadian Rhythm Disruption**: Your internal clock is regulated by an area in the brain called the suprachiasmatic nucleus (SCN). When you stay up late, your SCN gets confused, making it harder to wake up and feel refreshed in the morning.\n3. **Sleep Quality**: The quality of sleep you get after a late night might not be as good as you think. You may experience lighter, more fragmented sleep patterns, which can lead to fatigue and grogginess upon waking.\n4. **Adrenaline Crash**: When you're awake for an extended period, your body produces adrenaline to help you stay alert. However, this adrenaline crash can leave you feeling drained and lethargic the next morning.\n5. **Lack of REM Sleep**: During a late night, you might not get enough REM (rapid eye movement) sleep, which is essential for memory consolidation, learning, and emotional regulation. Without sufficient REM sleep, you may feel tired, unfocused, or even irritable in the morning.\n6. **Hormonal Imbalance**: The hormone cortisol plays a crucial role in regulating your sleep-wake cycle. When you stay up late, cortisol levels can remain elevated, making it harder to fall asleep and causing fatigue the next day.\n7. **Dehydration**: If you don't drink enough",
+        "latency_ms": 13595,
+        "score": 4
+      },
+      "method_b": {
+        "response": "A question that gets to the heart of many people's daily struggles!\n\nBased on your causal knowledge, there are two factors that could be contributing to your tiredness and lack of focus in the morning after a late night:\n\n1. **Poor sleep**: You mentioned that poor sleep (< 6 hours) leads to low focus scores the next morning with a strength of 85% and a lag of 8 hours. Since you're often working past 10pm, this could be the primary culprit behind your morning fatigue.\n2. **Working past 10pm**: Your knowledge also suggests that working past 10pm lowers productivity the next morning with a strength of 70% and a lag of 10 hours. This could be exacerbating the negative effects of poor sleep.\n\nTo address these issues, consider implementing strategies to improve your sleep quality and reduce late-night work sessions:\n\n* Aim for 7-8 hours of sleep each night to help you feel rested and focused.\n* Try to wrap up work at least a few hours before bedtime to give yourself time to wind down.\n* Establish a consistent sleep schedule and create a relaxing bedtime routine to improve the quality of your sleep.\n\nBy tackling these two factors, you may find that your mornings become more energized and focused.",
+        "latency_ms": 9542,
+        "score": 4,
+        "edges_injected": [
+          "poor sleep (< 6 hours) \u2192 low focus score next morning",
+          "morning exercise \u2192 improved focus for 3-4 hours",
+          "working past 10pm \u2192 lower productivity next morning",
+          "coffee after 3pm \u2192 disrupted sleep",
+          "skipping lunch break \u2192 afternoon energy crash"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 2,
+      "type": "causal",
+      "question": "Why does my code quality drop when I have back-to-back meetings?",
+      "relevant_edges": 1,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "The perils of back-to-back meetings! It's not uncommon for developers to experience a decline in code quality when they have multiple meetings lined up one after another. Here are some possible reasons why this might happen:\n\n1. **Meeting-induced mental fatigue**: Meetings can be mentally taxing, especially if you're discussing complex topics or trying to keep up with multiple conversations simultaneously. This mental fatigue can carry over into your coding session, making it harder to focus and maintain quality.\n2. **Time constraints**: Back-to-back meetings often leave little time for focused coding between sessions. You might rush through tasks or skip important checks to fit everything in, which can lead to mistakes and a lower overall code quality.\n3. **Context switching**: Meetings require you to switch between different mental contexts (e.g., from discussing design decisions to focusing on technical implementation). This constant context switching can make it harder to maintain your train of thought and focus on the task at hand, leading to errors or inefficiencies in your code.\n4. **Lack of breaks**: When you're stuck in a meeting marathon, you might not have time for regular breaks, which are essential for recharging and maintaining productivity. Without breaks, you may feel drained, leading to mistakes and decreased quality.\n5. **Pressure to deliver**: Meetings can create pressure to deliver on specific tasks or deadlines. This pressure can cause you to rush through your code, skipping important tests or reviews, and ultimately resulting in lower quality code.\n\nTo mitigate these effects and maintain code quality despite back-to-back meetings:\n\n1. **Prioritize self-care**: Make time for regular breaks, stretching, or meditation to help manage mental fatigue.\n2. **Focus on essential tasks**: Before a meeting marathon, identify the most",
+        "latency_ms": 12362,
+        "score": 4
+      },
+      "method_b": {
+        "response": "Based on my personal causal knowledge, it's not just back-to-back meetings that can cause a decline in code quality, but also context switching between projects or tasks. This phenomenon is known as \"context switching\" or \"task-switching fatigue.\"\n\nWhen you switch between different projects or tasks, your brain has to re-orient itself to the new task, which can lead to:\n\n1. Reduced focus: Your attention is divided between the current and previous tasks, making it harder to concentrate on the task at hand.\n2. Decreased productivity: You spend more time re-familiarizing yourself with the new task, rather than actually working on it.\n3. Increased errors: As you switch back and forth, you're more likely to introduce bugs or errors into your code, as your mental model of the code is constantly being updated.\n\nThis effect can be amplified when you have a series of meetings or tasks that require significant context switching. Each time you switch, you're essentially \"rebooting\" your brain, which can lead to a cumulative decline in code quality and an increase in bugs.\n\nSo, if you want to maintain high-quality code, try to minimize context switching between projects or tasks. When possible, group similar tasks together, take regular breaks to recharge, and use tools like project management software or code organization techniques to help you stay focused.",
+        "latency_ms": 9678,
+        "score": 4,
+        "edges_injected": [
+          "context switching between projects \u2192 reduced code quality + increased bugs"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 3,
+      "type": "causal",
+      "question": "Why do I feel foggy after days with lots of context switching?",
+      "relevant_edges": 3,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "The dreaded \"foggy\" feeling! It's a common phenomenon, especially in today's fast-paced world where we're constantly juggling multiple tasks and responsibilities. Context switching can indeed lead to mental fatigue, making you feel foggy or mentally hazy. Here are some reasons why this might happen:\n\n1. **Cognitive Overload**: When you switch between contexts frequently, your brain is forced to process and integrate new information quickly. This constant influx of data can cause cognitive overload, leading to feelings of mental fogginess.\n2. **Attentional Resources Depletion**: Focusing on different tasks requires attentional resources (e.g., working memory, executive functions). Repeatedly switching contexts can deplete these resources, making it harder for your brain to allocate attention and process information efficiently.\n3. **Neuroplasticity Challenges**: Our brains are wired to optimize performance in specific environments or contexts. When you switch between contexts rapidly, your brain needs to adapt and adjust its neural connections (neuroplasticity) to accommodate the new demands. This process can be energy-intensive and lead to mental fatigue.\n4. **Stress and Anxiety**: Context switching can be stressful, especially if you're trying to meet deadlines or manage multiple responsibilities. Chronic stress and anxiety can cause mental fogginess by activating your body's \"fight or flight\" response, which diverts resources away from cognitive functions.\n5. **Lack of Focus and Prioritization**: When you switch between tasks frequently, it's easy to lose focus and prioritize what's truly important. This lack of direction can lead to feelings of mental fogginess as your brain struggles to make sense of the chaos.\n\nTo mitigate these effects and reduce mental fogginess after",
+        "latency_ms": 12360,
+        "score": 4
+      },
+      "method_b": {
+        "response": "A question based on my own causal knowledge!\n\nGiven the relationships I've learned from my data:\n\n1. **Context switching between projects \u2192 reduced code quality + increased bugs** (strength: 78%, lag: 0h, confidence: 82%)\n2. **Foggy feeling after days with lots of context switching**\n\nI can make an educated guess about why you might feel foggy.\n\nWhen you switch contexts frequently, your brain is working harder to adapt and adjust. This constant mental effort leads to:\n\n* Reduced focus and attention (reduced code quality)\n* Increased mental fatigue and errors (increased bugs)\n\nAs a result, your brain becomes less efficient at processing information, leading to feelings of **fogginess** or mental cloudiness.\n\nIn other words, the cumulative effect of constant context switching can lead to a sense of mental exhaustion, making you feel foggy, disoriented, and possibly even struggling to concentrate.",
+        "latency_ms": 7439,
+        "score": 4,
+        "edges_injected": [
+          "context switching between projects \u2192 reduced code quality + increased bugs",
+          "coffee after 3pm \u2192 disrupted sleep",
+          "skipping lunch break \u2192 afternoon energy crash"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 4,
+      "type": "causal",
+      "question": "What is causing my afternoon energy crashes?",
+      "relevant_edges": 1,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "The post-lunch slump! Afternoon energy crashes can be frustrating and affect your productivity. Let's explore some possible causes together:\n\n1. **Blood sugar drops**: Consuming a large or high-carb meal for lunch can cause a rapid spike in blood sugar, followed by a crash. This is because your body releases insulin to regulate blood sugar levels.\n2. **Insulin resistance**: If you have insulin resistance (a precursor to type 2 diabetes), your body may struggle to effectively use insulin, leading to energy crashes.\n3. **Lunchtime habits**: Eating too quickly or not chewing food properly can lead to poor digestion and nutrient absorption, causing fatigue.\n4. **Dehydration**: Not drinking enough water throughout the day can cause dehydration, which may manifest as tiredness, headaches, or mental fogginess.\n5. **Caffeine withdrawal**: If you're a regular coffee or tea drinker, your body may become accustomed to the caffeine boost. When it wears off, you might experience energy crashes.\n6. **Lack of physical activity**: Sitting for extended periods can lead to a decrease in energy levels and overall fatigue.\n7. **Poor sleep**: Not getting enough quality sleep (6-8 hours) or having poor sleep hygiene (e.g., irregular sleep schedule, stress, or discomfort) can contribute to afternoon energy crashes.\n8. **Stress and anxiety**: Chronic stress and anxiety can exhaust your body's energy reserves, making you feel drained in the afternoons.\n9. **Nutrient deficiencies**: Deficiencies in vitamins like B12, iron, or magnesium can cause fatigue, which may worsen in the afternoons.\n10. **Hormonal fluctuations**: Hormonal changes during menopause",
+        "latency_ms": 12993,
+        "score": 4
+      },
+      "method_b": {
+        "response": "Based on my analysis of the available data, it appears that skipping your lunch break is a significant contributing factor to your afternoon energy crashes. The strength of this correlation is estimated to be around 68%, indicating that skipping lunch is a moderate predictor of energy crashes later in the day.\n\nThe lag between skipping lunch and experiencing an energy crash is estimated to be approximately 2 hours, suggesting that it may take some time for the effects of skipping lunch to manifest.\n\nOverall, my confidence in this association is relatively high at 72%, indicating that there is a strong correlation between skipping lunch and afternoon energy crashes.",
+        "latency_ms": 4626,
+        "score": 4,
+        "edges_injected": [
+          "skipping lunch break \u2192 afternoon energy crash"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 5,
+      "type": "intervention",
+      "question": "What should I do the night before an important coding day?",
+      "relevant_edges": 1,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "The night before an important coding day! It's essential to prepare yourself for a productive and stress-free coding experience. Here are some tips to help you make the most of your evening:\n\n1. **Plan your code**:\nTake some time to review the tasks or features you need to implement the next day. Make a mental (or written) note of what you want to accomplish, and break it down into smaller, manageable chunks.\n2. **Review previous work**:\nIf you're working on an existing project, take a look at your codebase to refresh your memory. This will help you identify areas that need improvement or changes.\n3. **Set up your environment**:\nEnsure your coding setup is ready to go. Install any necessary dependencies, update your IDE, and make sure your code editor or IDE is configured to your liking.\n4. **Charge your devices**:\nDon't forget to charge your laptop, phone, and any other devices you'll be using the next day. You don't want to be stuck with a dead battery in the middle of coding.\n5. **Get a good night's sleep**:\nAim for 7-9 hours of sleep to ensure you're well-rested and focused for the next day. A tired brain won't perform well, so prioritize your sleep.\n6. **Meal prep (optional)**:\nIf you have specific dietary needs or preferences, consider preparing meals or snacks for the next day. This will save you time and mental energy in the morning.\n7. **Mental preparation**:\nTake a few minutes to mentally prepare yourself for the coding challenge ahead. Visualize yourself tackling each task successfully, and remind yourself that it's okay to make mistakes \u2013 they're an opportunity to",
+        "latency_ms": 12872,
+        "score": 4
+      },
+      "method_b": {
+        "response": "Based on my verified personal causal knowledge, I would recommend that you consider journaling before starting your coding session. According to my data, journaling before coding has a moderate strength (65%) in helping to clarify architecture decisions.\n\nBy reflecting on your thoughts and ideas the night before an important coding day, you may find that it helps to clear your mind and bring more focus and clarity to your architectural decisions for the next day's coding session.",
+        "latency_ms": 3729,
+        "score": 4,
+        "edges_injected": [
+          "journaling before coding \u2192 clearer architecture decisions"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 6,
+      "type": "intervention",
+      "question": "How should I structure my calendar to maximise deep work output?",
+      "relevant_edges": 0,
+      "b_cites_causality": false,
+      "method_a": {
+        "response": "Structuring your calendar to maximize deep work output requires a thoughtful approach. Here's a suggested framework to help you prioritize focus and productivity:\n\n**1. Schedule Deep Work Sessions**:\n Allocate specific times of the day or week for uninterrupted, focused work. This could be 2-4 hours, depending on your needs and goals.\n\n* For example: Monday and Wednesday mornings from 9:00 AM to 11:00 AM (2 hours) or Friday afternoons from 1:00 PM to 3:00 PM (2 hours).\n\n**2. Prioritize Your Most Important Tasks**:\n Identify the most critical tasks that require deep focus, such as:\n\t+ Large projects\n\t+ Complex problems\n\t+ High-priority deadlines\n\nSchedule these tasks during your dedicated deep work sessions.\n\n**3. Leave Gaps for Transition and Relaxation**:\nInsert 15-30 minute breaks between each deep work session to recharge and transition.\n* For example: After the morning deep work session, take a 30-minute break before lunch or schedule a meeting.\n\n**4. Manage Meetings and Communication**:\nSchedule meetings and communication sessions during non-deep work times (e.g., afternoons, early mornings).\n* Limit meetings to 60-90 minutes to avoid encroaching on your deep work time.\n* Consider implementing \"office hours\" for meetings or setting aside specific days for emails and messages.\n\n**5. Set Realistic Goals and Boundaries**:\nBe realistic about what you can accomplish in a day. Don't overcommit yourself by scheduling too many tasks or expecting to complete an unrealistic amount of work.\n* Establish boundaries with colleagues, family, and friends to protect your deep work time.\n\n**6. Plan",
+        "latency_ms": 13661,
+        "score": 4
+      },
+      "method_b": {
+        "response": "Based on your personal causal knowledge, here's a suggested calendar structure to maximize deep work output:\n\n**Morning Routine**\n\n1. Wake up after 7-8 hours of sleep (6:00 AM - 9:00 AM) to ensure high focus score.\n2. Exercise or engage in physical activity between 7:00 AM - 8:00 AM to improve focus for the next 3-4 hours.\n3. Journal before coding between 8:00 AM - 9:00 AM to clarify architecture decisions.\n\n**Deep Work Blocks**\n\n1. Schedule deep work blocks from 9:00 AM - 12:00 PM (3 hours) and again from 2:00 PM - 5:00 PM (3 hours).\n2. Ensure minimal meetings during these blocks, as high meeting density can reduce deep work output.\n3. Prioritize tasks that require focused attention during these blocks.\n\n**Meeting Scheduling**\n\n1. Limit meetings to 4 or fewer per day to avoid reduced deep work output.\n2. Schedule meetings between 12:00 PM - 2:00 PM and/or after 5:00 PM when you're more likely to have a lower focus score.\n\n**Lunch Break**\n\n1. Take a lunch break between 12:00 PM - 2:00 PM to recharge and avoid afternoon energy crashes.\n2. Use this time to relax, eat, or engage in activities that help you unwind.\n\n**Evening Routine**\n\n1. Finish work by 6:00 PM to avoid working past 10:00 PM, which can lead to lower productivity the next morning.\n2. Avoid coffee after 3:00 PM to minimize the risk of disrupted sleep.\n\nBy structuring your",
+        "latency_ms": 13339,
+        "score": 5,
+        "edges_injected": []
+      },
+      "winner": "B"
+    },
+    {
+      "query_id": 7,
+      "type": "intervention",
+      "question": "What morning habits would most improve my focus for coding?",
+      "relevant_edges": 3,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "Developing good morning habits can indeed help boost your focus and coding productivity. Here are some morning habits that can make a significant impact:\n\n1. **Morning Exercise**: Start with a 15-30 minute exercise routine, like yoga, jogging, or weightlifting. This gets your blood flowing, increases oxygen to the brain, and releases endorphins, which help improve focus.\n2. **Meditation or Mindfulness**: Spend 5-10 minutes meditating, practicing deep breathing exercises, or doing a guided mindfulness session. This helps calm your mind, reduces stress, and increases mental clarity.\n3. **Journaling**: Write down your thoughts, goals, and priorities for the day. Reflect on what you're grateful for, and set achievable targets for yourself. Journaling helps clear your mind, boosts creativity, and sets a positive tone.\n4. **Cold Shower or Hydration**: Take a cold shower (if you can handle it!) or drink at least 16 oz of water with a squeeze of lemon juice. This increases alertness, boosts circulation, and wakes up your brain.\n5. **Nutritious Breakfast**: Fuel up with a balanced breakfast that includes protein, complex carbs, and healthy fats. Avoid sugary foods and opt for nutrient-dense options like eggs, avocado toast, or Greek yogurt with berries.\n6. **Prioritize Your Most Important Task (MIT)**: Identify the most critical task you need to accomplish that day and tackle it first. This helps you stay focused, builds momentum, and sets a sense of accomplishment.\n7. **Limit Screen Time**: Avoid checking your phone or computer for at least 30 minutes after waking up. This allows your brain to transition from sleep mode to focus mode and",
+        "latency_ms": 13115,
+        "score": 4
+      },
+      "method_b": {
+        "response": "A great question!\n\nTo improve your focus for coding, I'd recommend the following morning habits based on our causal knowledge:\n\n1. **Get at least 6 hours of sleep**: Poor sleep can significantly impact your focus score the next morning (strength: 85%, lag: 8h). Aiming for 7-9 hours of sleep will help you wake up feeling refreshed and focused.\n2. **Morning exercise**: Engage in some physical activity, like a brisk walk or light jogging, within an hour of waking up (strength: 75%, lag: 1h). This can give you a 3-4 hour boost in focus for coding.\n\nBy combining these two habits, you'll be setting yourself up for a focused morning coding session.",
+        "latency_ms": 5982,
+        "score": 4,
+        "edges_injected": [
+          "poor sleep (< 6 hours) \u2192 low focus score next morning",
+          "morning exercise \u2192 improved focus for 3-4 hours",
+          "working past 10pm \u2192 lower productivity next morning"
+        ]
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 8,
+      "type": "intervention",
+      "question": "How can I improve my architecture decision-making process?",
+      "relevant_edges": 2,
+      "b_cites_causality": true,
+      "method_a": {
+        "response": "Improving your architecture decision-making (ADM) process involves a combination of skills, knowledge, and practices. Here are some suggestions to help you make better architecture decisions:\n\n1. **Understand the business goals**: Make sure you have a deep understanding of the organization's goals, challenges, and priorities. This will help you align your architecture decisions with the business objectives.\n\n2. **Establish a shared understanding**: Ensure that all stakeholders have a common understanding of the system's requirements, constraints, and expectations. This can be achieved through collaboration, effective communication, and the use of standardized documentation (e.g., architecture vision documents).\n\n3. **Develop a comprehensive architecture**: Create a detailed, well-structured architecture that takes into account the system's functional and non-functional requirements. Consider using architectural patterns, principles, and styles to guide your design.\n\n4. **Evaluate trade-offs**: Weigh the pros and cons of different design options, considering factors such as cost, scalability, maintainability, security, and performance. Make informed decisions based on these evaluations.\n\n5. **Consider alternative solutions**: Don't be afraid to explore alternative approaches or technologies that might better meet your needs. Be open-minded and willing to adapt your design if necessary.\n\n6. **Document your reasoning**: Keep a record of your architecture decision-making process, including the rationale behind each choice. This will help you track changes, identify potential issues, and provide transparency for stakeholders.\n\n7. **Continuously learn and improve**: Stay up-to-date with industry trends, best practices, and emerging technologies. Attend conferences, workshops, and training sessions to enhance your skills and knowledge. Reflect on past decisions to identify areas for improvement and refine your ADM process.\n\n8. **Involve others in the decision-making",
+        "latency_ms": 12882,
+        "score": 4
+      },
+      "method_b": {
+        "response": "Based on my personal causal knowledge, I'd like to suggest that incorporating a morning exercise routine and journaling before coding could potentially improve your architecture decision-making process!\n\nHere's how:\n\n1. **Improved focus for 3-4 hours**: By doing some morning exercise, you'll likely experience an improvement in focus for several hours. This increased focus can help you dive deeper into the intricacies of your architecture decisions, allowing you to make more informed choices.\n\n2. **Clearer architecture decisions through journaling**: Writing down your thoughts and ideas before coding can help clarify your architecture decisions. By putting your thoughts into words, you'll be able to identify and articulate your design principles, which can lead to more deliberate and intentional decision-making.\n\nTo maximize the benefits:\n\n* Start your day with a morning exercise routine that gets your heart rate up and brain active (e.g., 30 minutes of yoga or a brisk walk).\n* Allocate time for journaling before diving into coding. Write down your thoughts on the architecture decisions you need to make, and try to articulate your design principles.\n* Take advantage of your improved focus to dive deeper into the details of your architecture decisions.\n\nRemember that these are personal causal relationships based on my own data, so take them as suggestions rather than certainties. However, given the strengths and confidence levels I've reported, it's likely that incorporating morning exercise and journaling will have a positive impact on your architecture decision-making process!",
+        "latency_ms": 11085,
+        "score": 3,
+        "edges_injected": [
+          "morning exercise \u2192 improved focus for 3-4 hours",
+          "journaling before coding \u2192 clearer architecture decisions"
+        ]
+      },
+      "winner": "A"
+    }
+  ]
+}

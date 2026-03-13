@@ -1,0 +1,1 @@
+web: cd POC-Jarvis_v1/web-app && uvicorn main:app --host 0.0.0.0 --port $PORT

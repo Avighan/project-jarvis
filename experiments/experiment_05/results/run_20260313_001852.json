@@ -1,0 +1,272 @@
+{
+  "experiment": "exp_05_retrieval",
+  "model": "llama3:latest",
+  "embed_available": false,
+  "run_at": "20260313_001852",
+  "tfidf_recall1": 0.8,
+  "tfidf_recall5": 0.9,
+  "decision": "PASS \u2014 TF-IDF Recall@5 = 90% \u2265 75%. Use TF-IDF for PoC.",
+  "results_tfidf": [
+    {
+      "query": "What does the user prefer for database storage in local projects?",
+      "expected_id": 5,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        5,
+        30,
+        45,
+        46,
+        11
+      ]
+    },
+    {
+      "query": "What is the user currently building?",
+      "expected_id": 11,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        11,
+        22,
+        28,
+        32,
+        43
+      ]
+    },
+    {
+      "query": "What are the user's Python coding style preferences?",
+      "expected_id": 2,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        2,
+        4,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "query": "What hardware does the user work on?",
+      "expected_id": 41,
+      "recall@1": false,
+      "recall@5": false,
+      "top_ids": [
+        10,
+        12,
+        31,
+        33,
+        22
+      ]
+    },
+    {
+      "query": "What's the user's primary goal for the PoC?",
+      "expected_id": 15,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        15,
+        10,
+        44,
+        22,
+        28
+      ]
+    },
+    {
+      "query": "How does the user like to receive answers?",
+      "expected_id": 1,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        1,
+        22,
+        28,
+        32,
+        43
+      ]
+    },
+    {
+      "query": "What AI models does the user have locally?",
+      "expected_id": 42,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        42,
+        11,
+        29,
+        22,
+        28
+      ]
+    },
+    {
+      "query": "What tools does the user use to track tasks?",
+      "expected_id": 36,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        36,
+        35,
+        22,
+        28,
+        32
+      ]
+    },
+    {
+      "query": "When does the user prefer to do focused work?",
+      "expected_id": 31,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        31,
+        10,
+        12,
+        33,
+        22
+      ]
+    },
+    {
+      "query": "What retrieval algorithms does the user know?",
+      "expected_id": 24,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        24,
+        23,
+        16,
+        22,
+        28
+      ]
+    },
+    {
+      "query": "What is the user's experience level with Python?",
+      "expected_id": 21,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        21,
+        25,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "query": "Does the user prefer sync or async code?",
+      "expected_id": 10,
+      "recall@1": false,
+      "recall@5": true,
+      "top_ids": [
+        3,
+        4,
+        10,
+        34,
+        22
+      ]
+    },
+    {
+      "query": "What testing framework does the user use?",
+      "expected_id": 4,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        4,
+        22,
+        28,
+        32,
+        43
+      ]
+    },
+    {
+      "query": "What does the user want Jarvis to eventually be?",
+      "expected_id": 13,
+      "recall@1": false,
+      "recall@5": false,
+      "top_ids": [
+        14,
+        12,
+        11,
+        20,
+        48
+      ]
+    },
+    {
+      "query": "What interface does the user primarily work in?",
+      "expected_id": 44,
+      "recall@1": false,
+      "recall@5": true,
+      "top_ids": [
+        13,
+        44,
+        10,
+        12,
+        31
+      ]
+    },
+    {
+      "query": "How experienced is the user with local LLM deployment?",
+      "expected_id": 30,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        30,
+        5,
+        11,
+        22,
+        28
+      ]
+    },
+    {
+      "query": "What causal reasoning tool is the user learning?",
+      "expected_id": 27,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        27,
+        22,
+        19,
+        28,
+        32
+      ]
+    },
+    {
+      "query": "What is the user's MCP-related goal for Jarvis?",
+      "expected_id": 20,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        20,
+        12,
+        15,
+        11,
+        14
+      ]
+    },
+    {
+      "query": "What does the user do when stuck on a problem?",
+      "expected_id": 33,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        33,
+        22,
+        28,
+        32,
+        43
+      ]
+    },
+    {
+      "query": "What's the user's approach to dependencies?",
+      "expected_id": 3,
+      "recall@1": true,
+      "recall@5": true,
+      "top_ids": [
+        3,
+        22,
+        28,
+        32,
+        43
+      ]
+    }
+  ],
+  "results_embed": []
+}

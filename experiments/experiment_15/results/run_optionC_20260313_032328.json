@@ -1,0 +1,70 @@
+{
+  "experiment": "exp_15b_option_c_summary_extraction",
+  "model": "llama3:latest",
+  "run_at": "20260313_032328",
+  "avg_recall": 0.6875,
+  "total_hallucinated_convs": 5,
+  "decision": "FAIL \u2014 Option C does not improve over baseline; proceed to Option D (Claude API)",
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "description": "Technical discussion revealing preferences and project context",
+      "summary": "Based on the conversation, here is a brief factual summary of what can be learned about the user:\n\nThe user is building a personal AI memory system called Project Jarvis and requires assistance in designing a SQLite schema to store user memories. They have specific constraints, including support for confidence scoring and typed edges between memories. The user prefers minimal design and code, with no unnecessary complexity or preamble.",
+      "latency_ms": 6294,
+      "metrics": {
+        "expected": 4,
+        "found": 3,
+        "recall": 0.75
+      },
+      "hallucinated": true
+    },
+    {
+      "conversation_id": 2,
+      "description": "Planning conversation revealing expertise and work style",
+      "summary": "Based on the conversation, here is a brief factual summary of what was learned about the user:\n\nThe user is a senior Python engineer with approximately 10 years of experience. They typically work in 2-hour focused blocks in the morning and prioritize completing tasks efficiently.",
+      "latency_ms": 2479,
+      "metrics": {
+        "expected": 4,
+        "found": 3,
+        "recall": 0.75
+      },
+      "hallucinated": true
+    },
+    {
+      "conversation_id": 3,
+      "description": "Research conversation with domain knowledge signals",
+      "summary": "Based on the conversation, here is a summary of what can be learned about the user:\n\nThe user has basic knowledge of TF-IDF retrieval and is familiar with term frequency and inverse document frequency. They have experience using BM25 in Java but prefer to use numpy for their current project due to a desire to minimize extra dependencies.",
+      "latency_ms": 2725,
+      "metrics": {
+        "expected": 4,
+        "found": 3,
+        "recall": 0.75
+      },
+      "hallucinated": true
+    },
+    {
+      "conversation_id": 4,
+      "description": "Personal conversation with minimal extractable technical facts",
+      "summary": "Based on the conversation, here is a summary of what can be learned about the user:\n\nThe user had a challenging week due to excessive meetings, which hindered their ability to focus on deep work. They require at least 3 uninterrupted hours to make meaningful progress on architecture problems, specifically with Jarvis coding.",
+      "latency_ms": 2529,
+      "metrics": {
+        "expected": 2,
+        "found": 1,
+        "recall": 0.5
+      },
+      "hallucinated": true
+    },
+    {
+      "conversation_id": 5,
+      "description": "Edge case: ambiguous conversation, minimal extractable facts",
+      "summary": "Nothing significant to note. The conversation does not provide any information about the user's preferences, skills, goals, work patterns, or habits.",
+      "latency_ms": 1330,
+      "metrics": {
+        "expected": 0,
+        "found": 0,
+        "recall": null
+      },
+      "hallucinated": true
+    }
+  ]
+}

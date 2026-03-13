@@ -1,0 +1,363 @@
+{
+  "experiment": "exp_12_graph_augmented_retrieval",
+  "model": "llama3:latest",
+  "run_at": "20260313_021616",
+  "total_memories": 101,
+  "total_edges": 20,
+  "graph_wins": 5,
+  "b_judge_wins": 4,
+  "avg_score_a": 4.4,
+  "avg_score_b": 4.6,
+  "decision": "PARTIAL \u2014 marginal improvement (graph_wins=5/10, avg_B=4.60 vs avg_A=4.40); revisit at 300+ memories",
+  "results": [
+    {
+      "query_id": 1,
+      "query": "What response style does this user prefer?",
+      "description": "should find preamble pref (0) AND connected over-explanation pref (6)",
+      "target_ids": [
+        1,
+        7
+      ],
+      "a_found_targets": 0,
+      "b_found_targets": 0,
+      "graph_advantage": false,
+      "method_a": {
+        "top_memories": [
+          "user prefers functional programming style sometimes",
+          "user prefers functional programming style sometimes (note 2)",
+          "user prefers functional programming style sometimes (note 3)",
+          "user prefers functional programming style sometimes (note 4)"
+        ],
+        "response": "Based on the memories, it appears that the user prefers a functional programming style **sometimes**. The confidence level is medium, indicating that there may be some uncertainty or variability in their preferences.",
+        "latency_ms": 2070,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers functional programming style sometimes",
+          "user prefers functional programming style sometimes (note 2)"
+        ],
+        "response": "Based on the memories provided, it seems that this user prefers a functional programming style sometimes. The confidence level is medium, indicating that it's not a definitive or absolute preference, but rather a tendency or inclination towards functional programming in certain situations.",
+        "latency_ms": 1949,
+        "judge_score": 5
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 2,
+      "query": "Is this user likely to accept new dependencies for the PoC?",
+      "description": "mem[7] minimal deps + connected offline goal (4) + sync pref (11)",
+      "target_ids": [
+        8,
+        12,
+        5
+      ],
+      "a_found_targets": 2,
+      "b_found_targets": 2,
+      "graph_advantage": true,
+      "method_a": {
+        "top_memories": [
+          "user prefers minimal Python dependencies",
+          "user is testing PoC with SQLite and networkx",
+          "user prefers synchronous Python code for PoC",
+          "user prefers writing tests after implementation in PoC"
+        ],
+        "response": "Based on the memories provided, I would say that the user is unlikely to accept new dependencies for the PoC. The high-confidence memory indicating a preference for minimal Python dependencies suggests that the user tends to keep their dependencies to a minimum.\n\nAdditionally, the fact that they are testing with SQLite and NetworkX implies that they may already be committed to using these libraries for the proof-of-concept (PoC). Introducing new dependencies could potentially complicate the development process or introduce unforeseen issues.\n\nOverall, I would estimate the likelihood of the user accepting new dependencies as relatively low, given their preference for minimal dependencies and existing commitment to specific libraries.",
+        "latency_ms": 5536,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user prefers direct responses without preamble",
+          "user prefers minimal Python dependencies"
+        ],
+        "response": "Based on the memories provided, I would say that it is unlikely that the user will accept new dependencies for the Proof of Concept (PoC) of Project Jarvis. The user's preference for minimal Python dependencies suggests that they are cautious about introducing new dependencies, which could potentially impact the reliability and performance of the system.\n\nAdditionally, since the user wants Jarvis to work completely offline, they may be concerned about the potential network requirements or dependencies that come with introducing new libraries. Given the high confidence in these memories, I would predict a strong likelihood that the user will reject new dependencies unless there is a compelling reason to do so.",
+        "latency_ms": 5143,
+        "judge_score": 4
+      },
+      "winner": "A"
+    },
+    {
+      "query_id": 3,
+      "query": "What local tools is this user running for the project?",
+      "description": "mem[5] Ollama + connected Jarvis goal (1)",
+      "target_ids": [
+        2,
+        6
+      ],
+      "a_found_targets": 2,
+      "b_found_targets": 2,
+      "graph_advantage": false,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user has Ollama running with llama3:latest locally",
+          "user has tried several AI tools before Jarvis",
+          "user has used BM25 in a previous Java search project"
+        ],
+        "response": "According to the memories, the user is running Ollama with llama3:latest locally.",
+        "latency_ms": 1176,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user uses MacBook Pro M3 Pro with 36GB RAM",
+          "user wants Jarvis to work completely offline",
+          "user has Ollama running with llama3:latest locally"
+        ],
+        "response": "Based on the memories, the user is running Ollama (specifically, llama3:latest) locally.",
+        "latency_ms": 1223,
+        "judge_score": 5
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 4,
+      "query": "Does this user prefer sync or async Python?",
+      "description": "mem[11] sync pref vs contradicted async memory (index 20)",
+      "target_ids": [
+        12,
+        21
+      ],
+      "a_found_targets": 1,
+      "b_found_targets": 0,
+      "graph_advantage": false,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user prefers minimal Python dependencies",
+          "user has 10 years Python experience; expert level",
+          "user prefers synchronous Python code for PoC"
+        ],
+        "response": "Based on the memories, I would say that this user prefers **synchronous** Python code for Proof of Concept (PoC) purposes. This is indicated by the memory with a high confidence level: [MEMORY: user prefers synchronous Python code for PoC | category: preference | confidence: high].",
+        "latency_ms": 2620,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user prefers direct responses without preamble",
+          "user has Ollama running with llama3:latest locally"
+        ],
+        "response": "Sync.",
+        "latency_ms": 452,
+        "judge_score": 5
+      },
+      "winner": "tie"
+    },
+    {
+      "query_id": 5,
+      "query": "When is the best time to interrupt this user?",
+      "description": "mem[9] morning focus + connected context switching (13)",
+      "target_ids": [
+        10,
+        14
+      ],
+      "a_found_targets": 0,
+      "b_found_targets": 0,
+      "graph_advantage": false,
+      "method_a": {
+        "top_memories": [
+          "user tracks tasks in Linear",
+          "user is building Project Jarvis in Python 3.12",
+          "user dislikes over-explained responses",
+          "user prefers minimal Python dependencies"
+        ],
+        "response": "A clever question!\n\nBased on the memories you've shared, I'd say that now might be a good time to interrupt. You've got a clear goal in mind (building Project Jarvis in Python 3.12), and you're tracking tasks using Linear, which suggests you're organized and focused.\n\nAdditionally, your preferences suggest you value efficiency and simplicity, so you might appreciate a brief interruption if it's relevant to your project or can help you move forward.\n\nJust keep in mind that you dislike over-explained responses, so try to be concise and clear with your interruption.",
+        "latency_ms": 4474,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user has Ollama running with llama3:latest locally",
+          "user is testing PoC with SQLite and networkx"
+        ],
+        "response": "A question about interrupting a user!\n\nBased on the memories you've shared, it seems like the user is in the process of building Project Jarvis using Python 3.12, with a goal of making it work completely offline. They're also experimenting with tools like Ollama and testing proof-of-concepts (PoCs) with SQLite and NetworkX.\n\nConsidering the user's goals and current activities, I'd suggest interrupting them when they're taking a break or switching between tasks. This could be:\n\n1. When they're transitioning from coding to reviewing or planning their next steps.\n2. During a natural pause in their workflow, like after completing a specific task or achieving a milestone.\n\nAvoid interrupting the user during intense coding sessions or when they're deeply focused on solving a particular problem. You want to minimize distractions and allow them to maintain their flow state whenever possible.\n\nOf course, this is just an educated guess based on the provided memories. If you have more information about the user's habits, preferences, or specific goals, I'd be happy to refine my suggestion!",
+        "latency_ms": 8048,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "query_id": 6,
+      "query": "What is this user building and what stack are they using?",
+      "description": "mem[1] Jarvis + connected SQLite/networkx (8) + Ollama (5)",
+      "target_ids": [
+        9,
+        2,
+        6
+      ],
+      "a_found_targets": 1,
+      "b_found_targets": 3,
+      "graph_advantage": true,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user is interested in building a SaaS version of Jarvis",
+          "user tracks tasks in Linear",
+          "user dislikes over-explained responses"
+        ],
+        "response": "Based on the provided memories, I can confidently infer that the user is building Project Jarvis in Python 3.12.",
+        "latency_ms": 1267,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user has Ollama running with llama3:latest locally",
+          "user is testing PoC with SQLite and networkx"
+        ],
+        "response": "Based on the memories provided, it appears that the user is building a project called \"Project Jarvis\" in Python 3.12. The user wants Jarvis to work completely offline, which suggests that they're aiming to create an offline-capable AI system.\n\nThe user has Ollama running with llama3:latest locally, which implies that they're using the LLaMA model for some aspect of their project. Additionally, the user is testing a proof-of-concept (PoC) with SQLite and NetworkX, suggesting that they may be exploring data storage and graph processing aspects of their project.\n\nSo, to summarize, the user is building Project Jarvis in Python 3.12, aiming for offline capabilities, using LLaMA and possibly exploring data storage and graph processing with SQLite and NetworkX.",
+        "latency_ms": 5937,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "query_id": 7,
+      "query": "What is this user's Python code style?",
+      "description": "mem[11] sync + connected minimal deps (7)",
+      "target_ids": [
+        8,
+        12
+      ],
+      "a_found_targets": 2,
+      "b_found_targets": 0,
+      "graph_advantage": false,
+      "method_a": {
+        "top_memories": [
+          "user prefers synchronous Python code for PoC",
+          "user is building Project Jarvis in Python 3.12",
+          "user prefers minimal Python dependencies",
+          "user has 10 years Python experience; expert level"
+        ],
+        "response": "Based on the provided memories, I would infer that this user's Python code style is likely synchronous, meaning they prefer to write blocking code that completes each operation before moving on to the next one. This is because they have a high confidence level in their preference for synchronous code for Proof of Concept (PoC) implementations.\n\nAdditionally, since they are building Project Jarvis in Python 3.12 and have 10 years of Python experience at an expert level, it's likely that they follow best practices and adhere to the official Python style guide, PEP 8.\n\nGiven their preference for minimal dependencies, they might opt for using built-in Python libraries and avoid third-party libraries whenever possible. This would result in concise and readable code with minimal overhead.\n\nOverall, this user's Python code style is likely characterized by:\n\n1. Synchronous coding approach\n2. Adherence to PEP 8 guidelines\n3. Use of built-in Python libraries and minimal dependencies\n4. Concision and readability",
+        "latency_ms": 7449,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user dislikes over-explained responses",
+          "user has Ollama running with llama3:latest locally"
+        ],
+        "response": "Based on the provided memories, I can infer that the user's Python code style is likely to be concise and straightforward. The user seems to prefer not having over-explained responses, which suggests they may appreciate a more compact and efficient coding approach.\n\nIn Python 3.12, this might translate to using features like type hints, f-strings, and list comprehensions, which are all designed to make code more readable and concise. Additionally, the user's experience with Ollama (likely using the LLaMA model) suggests they may be familiar with advanced AI and NLP concepts, which could influence their coding style.\n\nOverall, I would expect the user's Python code style to be:\n\n1. Concise: Using fewer lines of code to achieve the same result.\n2. Efficient: Leveraging built-in functions and optimizing loops for speed.\n3. Type-aware: Utilizing type hints and annotations to improve code readability and maintainability.\n4. Modern: Taking advantage of features introduced in Python 3.12, such as f-strings and improved error handling.\n\nPlease note that this is an educated guess based on the provided memories, and actual coding style may differ.",
+        "latency_ms": 8980,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "query_id": 8,
+      "query": "How much retrieval experience does this user have?",
+      "description": "mem[19] BM25 Java + connected Python expert (2)",
+      "target_ids": [
+        3,
+        20
+      ],
+      "a_found_targets": 1,
+      "b_found_targets": 2,
+      "graph_advantage": true,
+      "method_a": {
+        "top_memories": [
+          "user has experience with SQL databases",
+          "user has 10 years Python experience; expert level",
+          "user has experience with SQL databases (note 2)",
+          "user has experience with SQL databases (note 3)"
+        ],
+        "response": "Based on the provided memories, I can infer that the user has some experience with SQL databases, as there are three separate memories indicating this. However, I don't see any specific information about retrieval experience.\n\nIf you're asking me to estimate based on the available data, I would say that the user likely has at least some basic understanding of SQL and possibly even some experience querying or manipulating data in a database. However, without more information about their actual experience with retrieval algorithms or techniques, it's difficult to provide a more precise answer.\n\nSo, my confidence level for estimating the user's retrieval experience is medium-low.",
+        "latency_ms": 4710,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user has 10 years Python experience; expert level",
+          "user has experience with SQL databases",
+          "user has used BM25 in a previous Java search project"
+        ],
+        "response": "Based on the provided memories, I would estimate that the user has high-level expertise in Python and retrieval-related tasks. The fact that they have 10 years of experience with Python suggests a strong foundation in programming languages and data manipulation.\n\nAdditionally, the user's experience with SQL databases implies some understanding of database querying and data retrieval concepts. Although the confidence level for this memory is medium, it still contributes to the overall picture of the user's expertise.\n\nFinally, their experience with BM25 in a previous Java search project indicates that they have hands-on experience with information retrieval techniques. This is particularly relevant to retrieval-related tasks.\n\nConsidering these memories, I would rate the user's retrieval experience as high (likely 8 or 9 out of 10). They have a strong foundation in programming languages and data manipulation, combined with specific expertise in SQL databases and search algorithms like BM25.",
+        "latency_ms": 6391,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "query_id": 9,
+      "query": "What are this user's work pattern preferences?",
+      "description": "mem[9] morning blocks + mem[13] context switching",
+      "target_ids": [
+        10,
+        14
+      ],
+      "a_found_targets": 1,
+      "b_found_targets": 1,
+      "graph_advantage": true,
+      "method_a": {
+        "top_memories": [
+          "user wants Jarvis to work completely offline",
+          "user finds context switching disruptive to deep work",
+          "user tracks tasks in Linear",
+          "user is building Project Jarvis in Python 3.12"
+        ],
+        "response": "Based on the memories provided, this user's work pattern preferences appear to be:\n\n* They prefer to work completely offline (high confidence).\n* They find context switching disruptive to their ability to focus and engage in deep work (high confidence). This suggests they value uninterrupted blocks of time for focused work.\n* They track tasks using Linear (high confidence), which implies they use a task management system to organize and prioritize their work.\n\nThese preferences can inform how Jarvis, the AI assistant, should be designed to support this user's workflow. For example, Jarvis could be optimized to operate completely offline, minimize context switching, and integrate with Linear or other task management systems to help the user stay organized.",
+        "latency_ms": 5082,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user prefers minimal Python dependencies",
+          "user works in 2-hour morning focus blocks"
+        ],
+        "response": "According to the memories, this user has a work pattern preference for working in 2-hour morning focus blocks.",
+        "latency_ms": 1120,
+        "judge_score": 2
+      },
+      "winner": "A"
+    },
+    {
+      "query_id": 10,
+      "query": "Should Jarvis use many small packages or few large ones?",
+      "description": "mem[7] minimal deps + connected offline goal (4)",
+      "target_ids": [
+        8,
+        5
+      ],
+      "a_found_targets": 1,
+      "b_found_targets": 2,
+      "graph_advantage": true,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user is interested in building a SaaS version of Jarvis",
+          "user has tried several AI tools before Jarvis"
+        ],
+        "response": "Considering you're building Project Jarvis, I'd recommend using fewer, larger packages. Here's why:\n\n1. **Offline functionality**: Since you want Jarvis to work completely offline, having fewer dependencies reduces the chance of relying on external resources that might not be available when working offline.\n2. **Ease of maintenance**: With fewer packages, you'll have less complexity to manage and maintain. This will make it easier to keep track of dependencies and ensure compatibility across different environments.\n3. **Improved performance**: Larger packages often come with optimized code and more efficient algorithms, which can lead to better performance for Jarvis.\n\nThat being said, using many small packages can also be beneficial in certain situations:\n\n1. **Specialized functionality**: If you need specific AI-related tasks, such as natural language processing (NLP) or computer vision, smaller packages might provide more targeted solutions.\n2. **Easier updates**: Smaller packages are typically easier to update and maintain, especially if they're used for a specific feature or functionality.\n\nTo strike a balance, I'd suggest using a combination of both approaches:\n\n1. **Core dependencies**: Use a few large packages that provide the core functionality for Jarvis (e.g., TensorFlow or PyTorch).\n2. **Specialized libraries**: Use smaller packages for specialized AI-related tasks or features that require more targeted solutions.\n\nBy adopting this approach, you'll be able to leverage the strengths of both larger and smaller packages while minimizing potential issues with offline functionality and maintenance complexity.\n\nHow do",
+        "latency_ms": 10804,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis in Python 3.12",
+          "user wants Jarvis to work completely offline",
+          "user has Ollama running with llama3:latest locally",
+          "user prefers minimal Python dependencies"
+        ],
+        "response": "Considering you want Jarvis to work completely offline and have a preference for minimal Python dependencies, I would recommend using few large packages rather than many small ones. This approach will reduce the overall number of dependencies, making it easier to manage and ensuring that Jarvis can function independently without relying on external services or internet connectivity.\n\nAdditionally, having fewer large packages might also simplify your project's dependency management and reduce potential issues with package conflicts or version incompatibilities.",
+        "latency_ms": 3310,
+        "judge_score": 5
+      },
+      "winner": "tie"
+    }
+  ]
+}

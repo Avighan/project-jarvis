@@ -1,0 +1,4 @@
+Experiment 7 — Graph vs Flat
+Run: 20260313_001901 | Model: llama3:latest
+Graph wins: 2/10 | Flat wins: 0/10
+Decision: DEFER — graph wins only 2/10 at this scale. Use flat list for PoC. Revisit at 500+ memories.

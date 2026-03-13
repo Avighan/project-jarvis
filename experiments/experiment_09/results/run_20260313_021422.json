@@ -1,0 +1,336 @@
+{
+  "experiment": "exp_09_disinhibition_routing",
+  "model": "llama3:latest",
+  "run_at": "20260313_021422",
+  "b_wins": 11,
+  "a_wins": 0,
+  "ties": 1,
+  "correct_classifications": 12,
+  "pass_criterion": "b_wins >= 8 AND correct_classifications >= 10",
+  "decision": "PASS \u2014 use disinhibition routing in jarvis_cli.py",
+  "results": [
+    {
+      "prompt_id": 1,
+      "prompt": "Help me prioritise the next two weeks of Jarvis development.",
+      "task_type": "PLANNING",
+      "classified_as": "PLANNING",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user wants Jarvis to work offline",
+          "user is building Jarvis as a solo project",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "A critical phase in Jarvis' development! Given your memories, I'll provide a suggested plan to help you prioritize the next two weeks.\n\n**Week 1: Offline Mode and Local AI Layer**\n\n1. **Offline Mode**: Focus on implementing offline mode for Jarvis. This will allow users to interact with Jarvis without an internet connection. You can start by:\n\t* Developing a local database or caching mechanism to store user data.\n\t* Implementing text-to-speech synthesis and speech recognition algorithms that don't rely on online services.\n2. **Local AI Layer**: Continue building the local AI layer, focusing on:\n\t* Integrating the natural language processing (NLP) module with your offline mode implementation.\n\t* Developing a knowledge graph or database to store information about various topics.\n\n**Week 2: Enhancing Jarvis' Intelligence**\n\n1. **Conversational Flow**: Work on improving Jarvis' conversational flow by:\n\t* Implementing a more sophisticated dialogue management system.\n\t* Enhancing the entity recognition and intent detection capabilities.\n2. **Knowledge Graph Expansion**: Expand the knowledge graph by adding more entities, relationships, and concepts. This will enable Jarvis to provide more accurate and informative responses.\n\n**Additional Tips**\n\n1. **Prioritize Bugs and Edge Cases**: Make sure to test your implementation thoroughly and fix any bugs or edge cases that arise during development.\n2. **Code Refactoring**: Take the opportunity to refactor your code and improve its maintainability, readability, and performance.\n",
+        "latency_ms": 11554,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user wants Jarvis to work offline",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user is building Jarvis as a solo project",
+          "user plans to build an MCP server for Claude Desktop"
+        ],
+        "response": "A great question! With your goals and priorities in mind, I'll help you focus on the most important tasks for the next two weeks.\n\nBased on your memories, it seems that:\n\n1. **Work offline**: You want to ensure Jarvis can function without an internet connection.\n2. **Build a local AI memory layer in Python**: Your Project Jarvis aims to create a local AI memory layer using Python.\n3. **Build Jarvis as a solo project**: You're working on this project independently, which means you'll need to manage your time and resources effectively.\n\nConsidering these goals and priorities, I recommend the following tasks for the next two weeks:\n\n**Week 1:**\n\n1. **Implement offline capabilities**: Focus on making Jarvis work seamlessly without an internet connection. This will involve designing and implementing a robust local storage system.\n2. **Develop the local AI memory layer**: Start building the foundation of your local AI memory layer using Python. This might include creating data structures, implementing data persistence, and developing algorithms for knowledge representation.\n\n**Week 2:**\n\n1. **Complete offline capabilities**: Ensure that Jarvis can function smoothly without an internet connection by addressing any remaining issues or edge cases.\n2. **Integrate the local AI memory layer with Jarvis**: Merge your local AI memory layer with the Jarvis framework to create a cohesive system.\n\nBy prioritizing these tasks, you'll be making significant progress on your Project Jarvis and setting yourself up for success in the long run.\n\nRemember, building a robust AI",
+        "latency_ms": 11294,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "What should I tackle first: the MCP server or the memory decay job?",
+      "task_type": "PLANNING",
+      "classified_as": "PLANNING",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user plans to build an MCP server for Claude Desktop",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "A busy mind! You have two important goals on your plate, and it's great that you're considering which one to tackle first.\n\nGiven your high confidence levels in both goals, I'd recommend starting with the MCP (Memory Consolidation Protocol) server for Claude Desktop. Here's why:\n\n1. **Context**: The MCP server is specifically designed for Claude Desktop, which suggests a deeper integration with your existing project. Tackling this goal first will help you establish a solid foundation for your desktop environment.\n2. **Complexity**: Building an MCP server might be a more complex task compared to the memory decay job (Project Jarvis). By tackling the MCP server first, you'll have a chance to work through any challenging aspects of the project and ensure that it's well-structured before moving on to the next goal.\n\nAfter completing the MCP server, you can then focus on Project Jarvis, the local AI memory layer in Python. This approach will allow you to build upon your previous work and create a more comprehensive AI system for your Claude Desktop.\n\nWhat do you think? Are you ready to start building that MCP server?",
+        "latency_ms": 8105,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user plans to build an MCP server for Claude Desktop",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user wants Jarvis to work offline",
+          "user has 10 years of Python experience; expert level"
+        ],
+        "response": "It looks like you have a few goals in mind, and I'm happy to help you prioritize them.\n\nConsidering your goals and expertise:\n\n1. **MCP Server**: You want to build an MCP (Machine Controller Protocol) server for Claude Desktop. This seems like a specific goal related to building a desktop environment.\n2. **Project Jarvis**: You're working on Project Jarvis, which involves creating a local AI memory layer in Python. Since you want Jarvis to work offline, this project might be more general and applicable to various use cases.\n3. **Memory decay job**: Unfortunately, there's no information about what this job entails or how it relates to your other goals.\n\nGiven your expertise in Python (10 years, expert level), I'd suggest tackling the **Project Jarvis** first. This project seems to be a great opportunity to apply your skills and experience. By getting Jarvis working offline, you'll likely develop a solid foundation for future projects, including building an MCP server.\n\nAfter making progress on Jarvis, you can focus on the MCP server. Once you have a better understanding of how Jarvis will work offline, you might find that it informs or enhances your approach to building the MCP server.\n\nThe memory decay job remains unclear, so I won't prioritize it just yet. If you'd like to discuss what this job entails and how it relates to your other goals, I'm happy to help you clarify things!",
+        "latency_ms": 10099,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "What do I know about local LLM memory implementations from my reading?",
+      "task_type": "RESEARCH",
+      "classified_as": "RESEARCH",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "You've been digging into the world of local large language model (LLM) memory implementations, haven't you?\n\nFrom your reading, you know that:\n\n1. **Local LLM Memory is a crucial component**: It enables fast and efficient retrieval of relevant information from a massive dataset, which is essential for AI applications like Project Jarvis.\n2. **Key-Value Stores are a popular choice**: You've learned about various key-value store implementations, such as RocksDB, LevelDB, or LMDB, which can be used to build local LLM memory layers. These stores allow you to efficiently store and retrieve data using keys.\n3. **Memory-efficient encoding is vital**: You understand the importance of using memory-efficient encoding schemes, like binary encoding or compact representations, to reduce the storage requirements and improve query performance.\n4. **Indexing and caching are essential optimizations**: You know that indexing and caching can significantly improve the query performance by reducing the number of disk I/O operations and accelerating data retrieval.\n5. **Python libraries for local LLM memory implementations exist**: You've discovered Python libraries like `pymem` or `pytorch-memory` that provide implementation-ready components for building local LLM memory layers, making it easier to integrate with your Project Jarvis project.\n\nThese insights will surely help you in designing and implementing a robust local LLM memory layer for Project Jarvis!",
+        "latency_ms": 10039,
+        "judge_score": 4
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user wants Jarvis to work offline",
+          "user plans to build an MCP server for Claude Desktop",
+          "user has 10 years of Python experience; expert level"
+        ],
+        "response": "A question that gets to the heart of your current project!\n\nBased on our conversation, it seems you've been reading up on local AI memory layer implementations in Python, specifically for Project Jarvis. Here's what you might have learned:\n\n1. **Hugging Face Transformers**: You likely know about the popular Hugging Face Transformers library, which provides pre-trained models and a simple interface to integrate them into your project.\n2. **Local LLM (Large Language Model) implementations**: You may have explored local LLM implementations that can run on your device without requiring internet connectivity. This is crucial for Project Jarvis, as you want it to work offline.\n3. **Memory-efficient data structures**: You probably learned about memory-efficient data structures and algorithms to store and manage the vast amounts of data required by an AI model like Jarvis.\n\nAs a seasoned Python expert with 10 years of experience, you're well-equipped to tackle these challenges and implement a local LLM memory layer that meets your project's requirements.",
+        "latency_ms": 7294,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "What approaches exist for confidence scoring in memory systems?",
+      "task_type": "RESEARCH",
+      "classified_as": "RESEARCH",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "When it comes to confidence scoring in a memory system like Project Jarvis, there are several approaches you can take. Here are some common ones:\n\n1. **Threshold-based approach**: Set a threshold value (e.g., 0.5) and consider an item's confidence score above this threshold as \"confident\" or below as \"unconfident\". This is simple but may not be effective for all types of data.\n\n2. **Interquartile range (IQR) approach**: Calculate the IQR for a set of confidence scores, then classify items with scores more than 1.5*IQR above the median as confident and those below -1.5*IQR as unconfident. This method helps identify outliers in the data.\n\n3. **K-Nearest Neighbors (KNN) approach**: Train a KNN model on your data to predict confidence scores. You can use this model to estimate confidence for new items based on their similarity to existing ones.\n\n4. **Bayesian approach**: Model the underlying distribution of confidence scores using Bayes' theorem and Bayes factors. This allows you to quantify uncertainty in your confidence scores.\n\n5. **Machine learning-based approach**: Train a machine learning model (e.g., regression, decision tree) on features like item properties, context, or user behavior to predict confidence scores. You can use techniques like feature engineering and hyperparameter tuning to improve the model's performance.\n\n6. **Hybrid approach**: Combine multiple approaches above",
+        "latency_ms": 11071,
+        "judge_score": 3
+      },
+      "method_b": {
+        "top_memories": [
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user wants Jarvis to work offline",
+          "user plans to build an MCP server for Claude Desktop",
+          "user has 10 years of Python experience; expert level"
+        ],
+        "response": "As you're building Project Jarvis, a local AI memory layer in Python, you're likely interested in exploring various approaches to confidence scoring. Here are some methods that can help:\n\n1. **Bayesian Confidence**: This approach uses Bayes' theorem to compute the posterior probability of a statement being true, given the available evidence. You can use libraries like Scipy or PyMC3 for Bayesian inference.\n\n2. **Fuzzy Logic**: Fuzzy logic allows you to represent uncertainty using fuzzy sets and rules. This method is particularly useful when dealing with imprecise or vague data.\n\n3. **Softmax Function**: The softmax function is a common choice for confidence scoring in machine learning models. It takes the output of a neural network and converts it into a probability distribution, where the highest value represents the most confident prediction.\n\n4. **K-Nearest Neighbors (KNN)**: KNN is a simple yet effective method for estimating confidence based on the similarity between data points. You can use libraries like Scikit-Learn or PyOD for KNN-based confidence scoring.\n\n5. **Evidential Reasoning**: This approach uses evidence theory to combine multiple sources of information and compute the overall confidence level. It's particularly useful when dealing with uncertain or incomplete data.\n\n6. **Interval-Based Confidence**: This method represents uncertainty using intervals, which can be used to quantify the range of possible values for a given prediction.\n\n7. **Bootstrapping**: Bootstrapping involves resampling your dataset",
+        "latency_ms": 11217,
+        "judge_score": 4
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "Write the Python function that checks if a memory is a near-duplicate.",
+      "task_type": "EXECUTION",
+      "classified_as": "EXECUTION",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user prefers minimal Python dependencies",
+          "user has 10 years of Python experience; expert level"
+        ],
+        "response": "A great challenge!\n\nGiven your expertise in Python and AI, I'll provide a solution that leverages the `difflib` library to implement a near-duplicate detection function.\n\n**Function:** `is_near_duplicate(memory1, memory2)`\n\nThis function takes two memories as input and returns `True` if they are near-duplicates, and `False` otherwise.\n\n**Code:**\n```python\nimport difflib\n\ndef is_near_duplicate(memory1, memory2):\n    # Convert both memories to strings\n    str_memory1 = str(memory1)\n    str_memory2 = str(memory2)\n\n    # Use SequenceMatcher to find the ratio of matching characters\n    sm = difflib.SequenceMatcher(None, str_memory1, str_memory2)\n    ratio = sm.ratio()\n\n    # Define a threshold for near-duplication (e.g., 0.8)\n    threshold = 0.8\n\n    if ratio >= threshold:\n        return True\n    else:\n        return False\n```\n**Explanation:**\n\n1. Convert both memories to strings using the `str()` function.\n2. Use the `difflib.SequenceMatcher` class to compute the similarity between the two strings.\n3. Calculate the ratio of matching characters, which ranges from 0 (completely different) to 1 (identical).\n4. Define a threshold for near-duplication (e.g., 0.8). If the ratio exceeds this threshold, consider the",
+        "latency_ms": 11020,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers minimal Python dependencies",
+          "user has 10 years of Python experience; expert level",
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers"
+        ],
+        "response": "```\ndef are_near_duplicates(memory1, memory2):\n    # Calculate Jaccard similarity coefficient\n    def jaccard_similarity(set1, set2):\n        intersection = set1 & set2\n        union = set1 | set2\n        return len(intersection) / len(union)\n\n    # Convert memories to sets of key-value pairs\n    memory1_set = {(k, v) for k, v in memory1.items()}\n    memory2_set = {(k, v) for k, v in memory2.items()}\n\n    # Calculate Jaccard similarity coefficient\n    sim = jaccard_similarity(memory1_set, memory2_set)\n\n    return sim >= 0.5  # Define your own threshold here\n```",
+        "latency_ms": 5896,
+        "judge_score": 4
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Create a Linear ticket for adding confidence decay to the memory store.",
+      "task_type": "EXECUTION",
+      "classified_as": "EXECUTION",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user tracks tasks in Linear",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "Here's a Linear ticket for adding confidence decay to the memory store:\n\n**Title:** Add Confidence Decay to Memory Store\n\n**Description:**\n\nAs we're building Project Jarvis, it's essential to introduce mechanisms that help our AI model learn from experiences and adapt to new information. One crucial aspect of this is incorporating confidence decay into our memory store.\n\n**Why:**\nConfidence decay allows us to gradually reduce the importance of older memories as new ones are added. This helps prevent over-reliance on outdated information, which can lead to decreased performance and accuracy. By implementing confidence decay, we'll be able to:\n\n1. Improve the overall robustness of our AI model\n2. Enhance its ability to learn from new experiences and adapt to changing environments\n\n**What:**\nTo achieve this, I propose adding a confidence decay mechanism to our memory store. This will involve calculating a decay factor based on the age of each memory, then applying it to the original confidence value. This way, older memories will gradually lose their importance as new information becomes available.\n\n**Acceptance Criteria:**\n\n1. The confidence decay mechanism is implemented in the memory store\n2. The decay factor is calculated based on the age of each memory\n3. Older memories have their confidence values reduced accordingly\n\n**Priority:** Medium-High\n\n**Estimated Time:** 4-6 hours\n\nLet's get started and make our AI model more robust and adaptable!",
+        "latency_ms": 11194,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user tracks tasks in Linear",
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers",
+          "user prefers concise code examples"
+        ],
+        "response": "Here is a Linear ticket:\n\n**Title:** Add Confidence Decay to Memory Store\n\n**Description:** Implement confidence decay mechanism in the memory store to periodically update and refine memory entries based on their usage frequency.\n\n**Tags:** #memory-store #confidence-decay #refactoring",
+        "latency_ms": 2374,
+        "judge_score": 4
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 7,
+      "prompt": "I'm frustrated \u2014 the extraction is still only hitting 57% recall.",
+      "task_type": "EMOTIONAL",
+      "classified_as": "EMOTIONAL",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [],
+        "response": "I sense your frustration! It's not uncommon to feel stuck when trying to improve the performance of a machine learning model, especially when it comes to something like information retrieval where even small improvements can make a big difference.\n\nCan you tell me more about what you've tried so far to improve the extraction's recall? Have you experimented with different algorithms, feature engineering techniques, or tuned hyperparameters?\n\nAdditionally, are there any specific types of data or topics that tend to be particularly challenging for your model to extract? Understanding the strengths and weaknesses of your model can help us identify potential areas for improvement.\n\nLet's work together to troubleshoot and see if we can get that recall up!",
+        "latency_ms": 4963,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers",
+          "user prefers concise code examples",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "Try adjusting your threshold value for extracting relevant information. You can try setting it to a higher or lower value to see if that improves your recall rate. For example:\n\n```\nif relevance_score > 0.7:\n    extracted_info.append(new_info)\n```\n\nThis might help you capture more relevant data while still filtering out noise.",
+        "latency_ms": 2795,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 8,
+      "prompt": "Feeling burnt out after two weeks of experiments. Need a break.",
+      "task_type": "EMOTIONAL",
+      "classified_as": "EMOTIONAL",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [],
+        "response": "I totally get it! Two weeks of experiments can be exhausting, both mentally and physically. It's normal to feel drained and in need of a break.\n\nFirst of all, take a deep breath and acknowledge that you've done an amazing job so far! You've pushed through the initial excitement of starting new projects and have put in a lot of effort. That deserves some recognition!\n\nNow, let's talk about taking a well-deserved break. Here are some suggestions to help you recharge:\n\n1. **Take a mental health day**: Give yourself permission to do absolutely nothing related to experiments or work for the next 24 hours. Go for a walk, read a book, watch your favorite show, or take a relaxing bath.\n2. **Get moving**: Engage in physical activity that brings you joy, like going for a run, practicing yoga, or playing with friends/family. Exercise releases endorphins, which can help boost your mood and energy levels.\n3. **Connect with loved ones**: Reach out to friends, family, or colleagues who are not directly involved in your experiments. Socializing can help you feel less isolated and more supported.\n4. **Practice self-care**: Treat yourself to a relaxing evening or weekend getaway. Get a massage, take a nap, or indulge in your favorite comfort food.\n5. **Revisit your goals and priorities**: Use this break as an opportunity to reflect on why you started these experiments in the first place. Reconnect with your original goals",
+        "latency_ms": 10877,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers",
+          "user prefers concise code examples",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "Take a well-deserved rest! You've earned it after two weeks of intense experimentation on Project Jarvis. Remember, taking breaks can help you come back to your work with renewed energy and focus. When you're ready, we'll dive back into the code and tackle any challenges that have been piling up.",
+        "latency_ms": 2636,
+        "judge_score": 4
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 9,
+      "prompt": "Looking back at the 8 PoC experiments, what were the biggest surprises?",
+      "task_type": "REFLECTION",
+      "classified_as": "REFLECTION",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [],
+        "response": "The Project Orion (POC) experiments! Those were indeed groundbreaking and fascinating. As you know, the POC experiments were a series of eight controlled substance use disorder treatment studies that aimed to develop evidence-based treatments for addiction. Conducted by the National Institute on Drug Abuse (NIDA), these studies spanned from 1997 to 2004.\n\nAs I reflect back on those studies, some of the biggest surprises include:\n\n1. **Voucher-based reinforcement**: The voucher system, where participants received rewards for achieving milestones in treatment, was surprisingly effective in increasing retention rates and improving outcomes. This approach showed that providing tangible incentives could be a powerful motivator for individuals struggling with addiction.\n\n2. **Cognitive-behavioral therapy (CBT)**: CBT emerged as one of the most effective treatments for substance use disorders. The study found that CBT significantly reduced symptoms of depression, anxiety, and cravings compared to other approaches. This was a significant finding, as it highlighted the importance of addressing underlying emotional and psychological issues in addiction treatment.\n\n3. **Contingency management**: Contingency management (CM) involves providing rewards or penalties based on a person's behavior, such as attending therapy sessions or submitting drug-free urine samples. The study showed that CM led to higher rates of abstinence and reduced drug use compared to other treatments. This approach has since been widely adopted in addiction treatment.\n\n4. **The power of social support**: Social support networks were found to play a crucial",
+        "latency_ms": 10800,
+        "judge_score": 2
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers",
+          "user prefers concise code examples",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "Based on your previous projects, I'd say one of the biggest surprises was how quickly you managed to integrate the TensorFlow framework with your custom-built neural network.",
+        "latency_ms": 1559,
+        "judge_score": 5
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 10,
+      "prompt": "What patterns have I noticed in how I approach architecture decisions?",
+      "task_type": "REFLECTION",
+      "classified_as": "REFLECTION",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [],
+        "response": "What a great question! Noticing patterns in your approach to architecture decisions can help you identify areas for improvement, refine your decision-making process, and even develop a personal style that suits your problem-solving strengths. Let's explore some common patterns people may notice:\n\n1. **Analytical vs. Intuitive**: Do you tend to meticulously analyze the problem, weighing pros and cons, or do you rely more on your instincts and gut feelings? Both approaches have their merits, but being aware of your tendency can help you balance them.\n2. **Top-down vs. Bottom-up**: Do you start with high-level concepts and work your way down to implementation details, or do you dive into the specifics first and then generalize? This pattern can influence how you approach problem-solving.\n3. **Risk-averse vs. Experimentation-oriented**: Are you more cautious when making architecture decisions, preferring to minimize risks and sticking with tried-and-tested approaches, or are you willing to take calculated risks and experiment with new ideas?\n4. **Pragmatic vs. Theoretical**: Do you prioritize practicality and feasibility over theoretical perfection, or do you focus on developing a solid theoretical foundation before implementing it?\n5. **Collaborative vs. Independent**: Do you tend to involve others in your architecture decision-making process, seeking input and feedback from colleagues, or do you prefer to work independently, relying on your own expertise and experience?\n6. **Prioritizing scalability vs. Initial feasibility**: When faced with a trade-off",
+        "latency_ms": 10850,
+        "judge_score": 5
+      },
+      "method_b": {
+        "top_memories": [
+          "user prefers direct responses without preamble",
+          "user dislikes over-explained answers",
+          "user prefers concise code examples",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python"
+        ],
+        "response": "Based on your memories, you prefer direct responses without preamble and concise code examples. Given that you're building a local AI memory layer in Python (Project Jarvis), I'll provide a straight answer.\n\nYou've noticed a preference for:\n\n1. Direct responses: You don't like unnecessary explanations.\n2. Concise architecture: Your goal-oriented approach favors simplicity and clarity.\n3. Code-focused solutions: You prefer to see code examples that illustrate your point, rather than lengthy descriptions.\n\nThese patterns suggest you prioritize efficiency, simplicity, and practicality when making architecture decisions for Project Jarvis.",
+        "latency_ms": 4599,
+        "judge_score": 5
+      },
+      "winner": "TIE"
+    },
+    {
+      "prompt_id": 11,
+      "prompt": "Explain how TF-IDF IDF weighting works when the corpus is small.",
+      "task_type": "LEARNING",
+      "classified_as": "LEARNING",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user knows TF-IDF, SQLite, networkx, and Ollama API",
+          "user works in 2-hour morning focus blocks"
+        ],
+        "response": "When working with a small corpus (i.e., a limited set of documents or texts), TF-IDF (Term Frequency-Inverse Document Frequency) can behave slightly differently than when applied to larger corpora.\n\nIn traditional TF-IDF, IDF (Inverse Document Frequency) helps to reduce the importance of terms that are common across many documents. However, with a small corpus, this effect might be less pronounced or even reversed. Here's why:\n\n1. **Less diverse vocabulary**: With fewer documents, there is less opportunity for words to appear in multiple documents. This means that most words will have a high frequency across all documents, leading to artificially inflated IDF values.\n2. **Overestimation of rare terms**: Since the corpus is small, even relatively rare terms might appear in multiple documents. As a result, their IDF values might be lower than expected, as they don't truly represent rare events.\n\nTo mitigate these effects and ensure TF-IDF weighting works effectively with small corpora:\n\n1. **Use a minimum document frequency threshold**: Filter out words that appear in most documents (e.g., common stop words). This helps to reduce the noise and focus on more meaningful terms.\n2. **Adjust the IDF calculation**: Consider using a modified IDF formula, such as the one proposed by Ponte and Croft (1998), which takes into account the corpus size:\n\nIDF(t) = log((N - Nt + 0.5) / (Nt + 0.5",
+        "latency_ms": 12320,
+        "judge_score": 3
+      },
+      "method_b": {
+        "top_memories": [
+          "user knows TF-IDF, SQLite, networkx, and Ollama API",
+          "user works in 2-hour morning focus blocks",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user wants Jarvis to work offline"
+        ],
+        "response": "When working with a small corpus, TF-IDF (Term Frequency-Inverse Document Frequency) can be a bit tricky. In a small corpus, the IDF component of TF-IDF can become unstable and even meaningless.\n\nTo understand why, let's break down what happens in a small corpus:\n\n1. **Document frequency**: With fewer documents, the number of unique words is lower. This means that many words are present in most or all documents. As a result, the IDF values for these common words will be very low or even zero.\n2. **Inverse document frequency**: When the IDF value is too close to zero, it becomes less informative and can lead to overemphasizing common words. In a small corpus, this means that TF-IDF might prioritize words that appear frequently in individual documents over those that are unique across multiple documents.\n\nTo mitigate these issues when working with a small corpus:\n\n1. **Use a modified IDF calculation**: One approach is to use a smoothed version of IDF, such as the log-logistic function or the logarithmic function, which can help stabilize the values.\n2. **Consider using other weighting schemes**: Alternative approaches like the Log Likelihood Ratio (LLR) or the Pointwise Mutual Information (PMI) might be more suitable for small corpora. These methods focus on local relationships between words and documents rather than global frequencies.\n3. **Use a larger training set**: If possible, consider augmenting your corpus with additional data to make it larger and",
+        "latency_ms": 14443,
+        "judge_score": 4
+      },
+      "winner": "B"
+    },
+    {
+      "prompt_id": 12,
+      "prompt": "How does the VIP-cell disinhibition mechanism work in neuroscience?",
+      "task_type": "LEARNING",
+      "classified_as": "LEARNING",
+      "classification_correct": true,
+      "method_a": {
+        "top_memories": [
+          "user wants Jarvis to work offline"
+        ],
+        "response": "I'm happy to help you with that! The VIP-cell disinhibition mechanism is a fascinating topic in neuroscience.\n\nVIP (vasoactive intestinal peptide) cells are a type of interneuron found throughout the brain. They play a crucial role in regulating neural activity and modulating the strength of synaptic connections between neurons. The disinhibition mechanism refers to the process by which VIP cells can suppress the inhibitory effects of other interneurons on neurons, effectively disinhibiting them.\n\nHere's how it works:\n\n1. VIP cells receive excitatory input from other neurons or external stimuli.\n2. When excited, VIP cells release vasopressin and vasoactive intestinal peptide (VIP) neurotransmitters.\n3. These neurotransmitters bind to receptors on the surface of inhibitory interneurons (such as GABAergic or glycinergic neurons).\n4. Activation of these receptors reduces the activity of the inhibitory interneurons, effectively removing their inhibitory influence on the target neuron.\n5. As a result, the target neuron becomes disinhibited and can fire more freely.\n\nThis mechanism is thought to play a key role in regulating neural circuits involved in attention, arousal, and sensory processing. In particular, VIP-cell disinhibition has been implicated in the development of neurological disorders such as epilepsy and Parkinson's disease.\n\nI hope that helps clarify the VIP-cell disinhibition mechanism! Let me know if you have any further questions or need more information.",
+        "latency_ms": 13978,
+        "judge_score": 3
+      },
+      "method_b": {
+        "top_memories": [
+          "user wants Jarvis to work offline",
+          "user is building Project Jarvis \u2014 local AI memory layer in Python",
+          "user plans to build an MCP server for Claude Desktop",
+          "user has 10 years of Python experience; expert level"
+        ],
+        "response": "I may not have access to the internet, but my training data includes a vast amount of information on various topics, including neuroscience. The VIP-cell disinhibition mechanism is an important concept in neural circuits.\n\nVIP (vasoactive intestinal polypeptide) cells are a type of interneuron found in the mammalian brain. They play a crucial role in modulating the activity of other neurons and are involved in various physiological processes, such as regulating the sleep-wake cycle, emotion, and memory.\n\nThe disinhibition mechanism refers to the way VIP cells can enhance or disinhibit (reduce) the activity of other neurons by releasing their neurotransmitter, VIP. This occurs when the VIP cell is activated by an excitatory input from another neuron.\n\nHere's a simplified explanation of how it works:\n\n1. An excitatory neuron releases its neurotransmitter, such as glutamate, onto a VIP cell.\n2. The VIP cell receives this excitation and becomes activated.\n3. When the VIP cell is activated, it releases VIP onto other neurons, which are often inhibitory interneurons.\n4. These inhibitory interneurons receive the VIP and become disinhibited or reduced in their activity.\n5. As a result, the overall activity of the neural circuit is modulated, leading to changes in behavior, such as increased arousal or attention.\n\nIn summary, the VIP-cell disinhibition mechanism is an important process that allows for the modulation of neural circuits through the release of VIP by activated interneurons.",
+        "latency_ms": 12655,
+        "judge_score": 4
+      },
+      "winner": "B"
+    }
+  ]
+}

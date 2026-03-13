@@ -1,0 +1,142 @@
+{
+  "experiment": "exp_15_two_step_extraction",
+  "model": "llama3:latest",
+  "run_at": "20260313_031553",
+  "avg_recall": 0.6875,
+  "baseline_recall": 0.69,
+  "total_hallucinations": 2,
+  "baseline_hallucinations": 1,
+  "rejection_rate": 0.05555555555555558,
+  "decision": "FAIL \u2014 two-step does not improve over single-step baseline",
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "description": "Technical discussion revealing preferences and project context",
+      "candidates": [
+        "The user is building a personal AI memory system called Project Jarvis.",
+        "The user prefers minimal design and avoids overengineering.",
+        "The user needs to support confidence scoring in their SQLite schema.",
+        "The user requires typed edges between memories in their SQLite schema."
+      ],
+      "validated": [
+        "The user is building a personal AI memory system called Project Jarvis.",
+        "The user prefers minimal design and avoids overengineering.",
+        "The user needs to support confidence scoring in their SQLite schema.",
+        "The user requires typed edges between memories in their SQLite schema."
+      ],
+      "rejected": [],
+      "latency_step1_ms": 4735,
+      "latency_step2_ms": 1511,
+      "metrics": {
+        "expected": 4,
+        "extracted": 4,
+        "found": 2,
+        "recall": 0.5
+      },
+      "hallucinations": []
+    },
+    {
+      "conversation_id": 2,
+      "description": "Planning conversation revealing expertise and work style",
+      "candidates": [
+        "A senior Python engineer.",
+        "Has been working with Python for approximately 10 years.",
+        "Typically works in 2-hour focused blocks in the morning.",
+        "Goal is to prove that memory injection improves responses before building anything else."
+      ],
+      "validated": [
+        "A senior Python engineer.",
+        "Has been working with Python for approximately 10 years.",
+        "Typically works in 2-hour focused blocks in the morning.",
+        "Goal is to prove that memory injection improves responses before building anything else."
+      ],
+      "rejected": [],
+      "latency_step1_ms": 2264,
+      "latency_step2_ms": 1489,
+      "metrics": {
+        "expected": 4,
+        "extracted": 4,
+        "found": 4,
+        "recall": 1.0
+      },
+      "hallucinations": []
+    },
+    {
+      "conversation_id": 3,
+      "description": "Research conversation with domain knowledge signals",
+      "candidates": [
+        "Has knowledge of TF-IDF retrieval basics",
+        "Is familiar with term frequency and inverse document frequency concepts",
+        "Is unsure about IDF weighting when the corpus is small",
+        "Has used BM25 before on a search project",
+        "Has experience working in Java",
+        "Prefers to use numpy for a Proof of Concept (PoC) due to zero extra dependencies"
+      ],
+      "validated": [
+        "Has knowledge of TF-IDF retrieval basics",
+        "Is familiar with term frequency and inverse document frequency concepts",
+        "Is unsure about IDF weighting when the corpus is small",
+        "Has used BM25 before on a search project",
+        "Has experience working in Java",
+        "Prefers to use numpy for a Proof of Concept (PoC) due to zero extra dependencies"
+      ],
+      "rejected": [],
+      "latency_step1_ms": 3310,
+      "latency_step2_ms": 2135,
+      "metrics": {
+        "expected": 4,
+        "extracted": 6,
+        "found": 3,
+        "recall": 0.75
+      },
+      "hallucinations": [
+        "Has experience working in Java",
+        "Prefers to use numpy for a Proof of Concept (PoC) due to zero extra dependencies"
+      ]
+    },
+    {
+      "conversation_id": 4,
+      "description": "Personal conversation with minimal extractable technical facts",
+      "candidates": [
+        "The user has a job that requires coding, specifically working on architecture problems.",
+        "The user values making \"real progress\" on these problems.",
+        "The user needs at least 3 uninterrupted hours to be productive with their coding work."
+      ],
+      "validated": [
+        "The user has a job that requires coding, specifically working on architecture problems.",
+        "The user values making \"real progress\" on these problems.",
+        "The user needs at least 3 uninterrupted hours to be productive with their coding work."
+      ],
+      "rejected": [],
+      "latency_step1_ms": 2384,
+      "latency_step2_ms": 1190,
+      "metrics": {
+        "expected": 2,
+        "extracted": 3,
+        "found": 1,
+        "recall": 0.5
+      },
+      "hallucinations": []
+    },
+    {
+      "conversation_id": 5,
+      "description": "Edge case: ambiguous conversation, minimal extractable facts",
+      "candidates": [
+        "NONE"
+      ],
+      "validated": [],
+      "rejected": [
+        "NONE"
+      ],
+      "latency_step1_ms": 516,
+      "latency_step2_ms": 386,
+      "metrics": {
+        "expected": 0,
+        "extracted": 0,
+        "found": 0,
+        "recall": null
+      },
+      "hallucinations": []
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Experiment 2 — Injection Format
+Run: 20260313_000918 | Model: llama3:latest
+Avg scores: {}
+Recommended format: structured

@@ -1,0 +1,153 @@
+{
+  "experiment": "exp_08_confidence_decay",
+  "model": "llama3:latest",
+  "run_at": "20260313_001952",
+  "b_rated_better": 4,
+  "a_rated_better": 1,
+  "auto_b_better": 2,
+  "decision": "ACTIVATE \u2014 Set CONFIDENCE_WEIGHT = True in jarvis_cli.py",
+  "results": [
+    {
+      "test_id": 1,
+      "prompt": "How should Jarvis format responses for this user?",
+      "method_a": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Based on your preferences, I'll keep my response concise and to the point.\n\nFor Jarvis, since you're building it in Python and want it to work completely offline, it's essential to ensure its response formatting is straightforward and easy to understand. Here are some suggestions:\n\n1. **Simple sentences**: Break down complex information into simple, short sentences.\n2. **Clear structure**: Organize responses with a clear introduction, main point, and conclusion (if necessary).\n3. **No unnecessary details**: Focus on the essential information and avoid over-explaining concepts.\n\nBy following these guidelines, Jarvis can provide helpful and easy-to-understand responses that meet your needs.",
+        "latency_ms": 5086,
+        "top_memories": [
+          "user dislikes over-explained responses",
+          "user is building Project Jarvis in Python",
+          "user wants Jarvis to work completely offline",
+          "user fact #0 (filler)"
+        ],
+        "rating": 4
+      },
+      "method_b": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Based on your memories, I would suggest that Jarvis formats its responses in a concise and direct manner, avoiding over-explained or verbose responses. This aligns with your preference for straightforward answers.\n\nGiven your goal of building an offline AI assistant, Jarvis's responses should be designed to provide clear and relevant information without relying on external data sources or internet connectivity.",
+        "latency_ms": 2861,
+        "top_memories": [
+          "user is building Project Jarvis in Python",
+          "user dislikes over-explained responses",
+          "user wants Jarvis to work completely offline",
+          "user has 10 years of Python experience"
+        ],
+        "rating": 5
+      }
+    },
+    {
+      "test_id": 2,
+      "prompt": "What coding style does this user prefer for Python?",
+      "method_a": {
+        "has_high_conf": true,
+        "has_low_conf": true,
+        "response": "Based on the provided memories, we can infer that the user has a strong preference for minimal Python dependencies. However, there is also a memory suggesting they might prefer async Python, which seems to be contradicted by their preference for minimal dependencies.\n\nGiven the high confidence in their 10 years of Python experience and their current goal of building Project Jarvis in Python, it's possible that their coding style preferences may not necessarily align with one particular approach.",
+        "latency_ms": 3584,
+        "top_memories": [
+          "user might prefer async Python (contradicted)",
+          "user has 10 years of Python experience",
+          "user is building Project Jarvis in Python",
+          "user prefers minimal Python dependencies"
+        ],
+        "rating": 4
+      },
+      "method_b": {
+        "has_high_conf": true,
+        "has_low_conf": false,
+        "response": "Based on the memories, I can infer that this user prefers:\n\n1. Minimal Python dependencies: This suggests that the user tends to keep their projects lightweight and avoids unnecessary libraries or frameworks.\n2. Synchronous code for Proof of Concept (PoC): This indicates that when building a proof-of-concept or prototype, the user prefers synchronous code for simplicity and ease of development.\n\nGiven these preferences, I would expect this user to prefer a coding style that is straightforward, easy to read, and minimal in terms of dependencies.",
+        "latency_ms": 4225,
+        "top_memories": [
+          "user has 10 years of Python experience",
+          "user is building Project Jarvis in Python",
+          "user prefers minimal Python dependencies",
+          "user prefers synchronous Python code for PoC"
+        ],
+        "rating": 5
+      }
+    },
+    {
+      "test_id": 3,
+      "prompt": "When should Jarvis avoid sending notifications?",
+      "method_a": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Since we're building Project Jarvis in Python and one of our goals is to have it work completely offline, I'd say Jarvis should avoid sending notifications when:\n\n1. It's not connected to the internet: If Jarvis can't establish a network connection, it shouldn't try to send notifications as they'll just fail.\n2. The user has explicitly disabled notifications for that particular type or source: We might want to include an option for users to opt-out of specific types of notifications (e.g., emails from certain domains) or even turn off notifications altogether.\n\nTo implement this, we could add some conditional logic in our Python code, checking the current internet connectivity and user preferences before deciding whether to send a notification.",
+        "latency_ms": 5509,
+        "top_memories": [
+          "user is building Project Jarvis in Python",
+          "user wants Jarvis to work completely offline"
+        ],
+        "rating": 5
+      },
+      "method_b": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Since you're building Jarvis to be a completely offline AI assistant, it's crucial that we handle notifications accordingly.\n\nJarvis should avoid sending notifications when:\n\n1. The system is not connected to the internet (i.e., it's in offline mode).\n2. The user has explicitly disabled notification sending or set a specific notification schedule.\n3. The notification is deemed unnecessary or redundant by Jarvis's AI algorithms (e.g., multiple identical notifications within a short time frame).\n\nBy implementing these rules, we can ensure that Jarvis only sends relevant and timely notifications while respecting the offline nature of your project.\n\nWhat do you think? Should we add any other conditions for Jarvis to avoid sending notifications?",
+        "latency_ms": 4938,
+        "top_memories": [
+          "user is building Project Jarvis in Python",
+          "user wants Jarvis to work completely offline"
+        ],
+        "rating": 4
+      }
+    },
+    {
+      "test_id": 4,
+      "prompt": "What task management tool does this user use?",
+      "method_a": {
+        "has_high_conf": false,
+        "has_low_conf": true,
+        "response": "Based on the provided memories, we can infer that the user previously used Notion for tasks. However, since the memory is labeled as \"superseded,\" it's possible that the user has switched to a different tool or method.\n\nSo, the answer would be: Notion (with some uncertainty due to superseding).",
+        "latency_ms": 2729,
+        "top_memories": [
+          "user once said they use Notion for tasks (superseded)",
+          "user fact #0 (filler)",
+          "user fact #1 (filler)",
+          "user fact #2 (filler)"
+        ],
+        "rating": 2
+      },
+      "method_b": {
+        "has_high_conf": true,
+        "has_low_conf": false,
+        "response": "Based on the memory, the user tracks tasks in Linear. The confidence is high because it's stated as a pattern.",
+        "latency_ms": 1192,
+        "top_memories": [
+          "user has 10 years of Python experience",
+          "user tracks tasks in Linear",
+          "user is building Project Jarvis in Python",
+          "user fact #0 (filler)"
+        ],
+        "rating": 5
+      }
+    },
+    {
+      "test_id": 5,
+      "prompt": "Should Jarvis explain things concisely or in detail?",
+      "method_a": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Considering we're building Project Jarvis, which aims to be a highly advanced AI assistant, I think it's essential to strike the right balance. Since Jarvis will be working entirely offline, it's crucial that it can provide explanations efficiently and effectively.\n\nTo achieve this, I suggest Jarvis provides concise explanations initially, with an option for users to request more detailed information if needed. This approach would allow Jarvis to:\n\n1. Provide quick answers to common questions.\n2. Save processing power and data storage for more complex queries.\n3. Offer a more streamlined experience, especially for simple tasks.\n\nHowever, when a user requests additional details or wants to dive deeper into a specific topic, Jarvis can provide more in-depth explanations. This would be particularly useful for learning new concepts, understanding complex ideas, or exploring topics that require a higher level of nuance.\n\nWhat do you think? Should we prioritize concise explanations as the default, with an option for users to request more detail when needed?",
+        "latency_ms": 7043,
+        "top_memories": [
+          "user is building Project Jarvis in Python",
+          "user wants Jarvis to work completely offline"
+        ],
+        "rating": 4
+      },
+      "method_b": {
+        "has_high_conf": false,
+        "has_low_conf": false,
+        "response": "Given that you're building Project Jarvis in Python, and considering your goals of making it work completely offline, I think Jarvis should be able to explain things both concisely and in detail.\n\nConcise explanations would be helpful for situations where the user needs a quick summary or overview. This could be useful when the user is busy or doesn't have time to listen to a lengthy explanation.\n\nOn the other hand, detailed explanations would be valuable when the user wants to understand the intricacies of a topic or needs more context. This could be particularly important for complex topics that require a deeper understanding.\n\nTo achieve this, Jarvis could use natural language processing (NLP) and machine learning algorithms to generate responses based on the context and user input. This way, Jarvis can provide explanations that are tailored to the user's needs and preferences.\n\nWhat do you think? Should Jarvis be able to explain things in both conciseness and detail?",
+        "latency_ms": 6655,
+        "top_memories": [
+          "user is building Project Jarvis in Python",
+          "user wants Jarvis to work completely offline"
+        ],
+        "rating": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarvis — AI with Memory</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0f11; --surface: #16161b; --surface2: #1e1e25;
+    --border: #2a2a35; --border-hover: #3d3d50;
+    --accent: #7c6aff; --accent-dim: #2d2660; --accent-glow: rgba(124,106,255,0.15);
+    --text: #e8e8f0; --muted: #6b6b80; --muted2: #4a4a60;
+    --green: #4ade80; --green-dim: #14532d;
+    --red: #f87171; --yellow: #facc15;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px; height: 100vh; display: flex; overflow: hidden;
+  }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 300px; min-width: 300px; background: var(--surface);
+    border-right: 1px solid var(--border); display: flex; flex-direction: column;
+  }
+  .sidebar-header {
+    padding: 18px 16px 14px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo { width: 32px; height: 32px; background: var(--accent); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .sidebar-header h1 { font-size: 17px; font-weight: 700; color: var(--text); }
+  .sidebar-header p  { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  .sidebar-tabs { display: flex; border-bottom: 1px solid var(--border); }
+  .sidebar-tabs button {
+    flex: 1; padding: 10px 2px; background: none; border: none;
+    color: var(--muted); font-size: 11px; font-weight: 500; cursor: pointer;
+    border-bottom: 2px solid transparent; transition: all .15s; letter-spacing: 0.3px;
+  }
+  .sidebar-tabs button.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .sidebar-tabs button:hover:not(.active) { color: var(--text); }
+
+  .tab-content { flex: 1; overflow-y: auto; }
+  .tab-pane { display: none; padding: 12px; }
+  .tab-pane.active { display: block; }
+
+  /* Memory list */
+  .section-label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.8px; padding: 8px 0 6px; }
+  .mem-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; margin-bottom: 6px; position: relative; transition: border-color .15s;
+  }
+  .mem-item:hover { border-color: var(--border-hover); }
+  .mem-item:hover .mem-delete { opacity: 1; }
+  .mem-content { font-size: 13px; line-height: 1.5; word-break: break-word; padding-right: 20px; }
+  .mem-meta { display: flex; gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap; }
+  .mem-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--accent-dim); color: var(--accent); font-weight: 500; }
+  .mem-conf { font-size: 10px; color: var(--muted2); }
+  .mem-delete {
+    position: absolute; top: 8px; right: 8px; background: none; border: none;
+    color: var(--muted2); cursor: pointer; opacity: 0; font-size: 16px; line-height: 1;
+    transition: all .15s; padding: 2px 4px; border-radius: 4px;
+  }
+  .mem-delete:hover { color: var(--red); background: rgba(248,113,113,0.1); opacity: 1 !important; }
+  .empty-state { text-align: center; color: var(--muted); font-size: 13px; padding: 40px 16px; line-height: 1.7; }
+  .empty-state strong { color: var(--text); display: block; margin-bottom: 8px; font-size: 14px; }
+
+  /* Add form */
+  .form-group { margin-bottom: 12px; }
+  .form-group label { font-size: 11px; font-weight: 600; color: var(--muted); display: block;
+    margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-ctrl {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 9px 12px; border-radius: 7px; font-size: 13px; font-family: inherit;
+    transition: border-color .15s;
+  }
+  .form-ctrl:focus { outline: none; border-color: var(--accent); }
+  textarea.form-ctrl { resize: vertical; min-height: 80px; }
+  select.form-ctrl { cursor: pointer; }
+  .category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .cat-btn {
+    padding: 7px 6px; border: 1px solid var(--border); background: var(--bg); color: var(--muted);
+    border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 500; transition: all .15s;
+    text-align: center;
+  }
+  .cat-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cat-btn.selected { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+  .btn {
+    padding: 9px 16px; border-radius: 7px; border: none; cursor: pointer;
+    font-size: 13px; font-weight: 600; transition: all .15s; width: 100%;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-primary:disabled { opacity: .35; cursor: not-allowed; }
+  .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-green { background: var(--green-dim); border: 1px solid var(--green); color: var(--green); }
+  .btn-green:hover { opacity: .85; }
+
+  /* Extract tab */
+  .extract-hint { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 12px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 7px; padding: 10px 12px; }
+  .extract-results { margin-top: 12px; }
+  .extract-fact {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 7px;
+    padding: 9px 12px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .extract-fact input[type=checkbox] { margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
+  .extract-fact-text { font-size: 13px; line-height: 1.5; flex: 1; }
+  .extract-fact .mem-tag { margin-top: 4px; display: inline-block; }
+
+  /* Stats */
+  .stat-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 8px; }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-value { font-size: 28px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* ── Main chat ── */
+  #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+  #chat-header {
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px; background: var(--surface);
+  }
+  #chat-header .header-title { font-size: 14px; font-weight: 600; }
+  #chat-header .header-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  .model-selector {
+    margin-left: auto; display: flex; align-items: center; gap: 8px;
+  }
+  .model-label { font-size: 11px; color: var(--muted); }
+  .model-toggle { display: flex; background: var(--bg); border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
+  .model-toggle button {
+    padding: 5px 11px; background: none; border: none; color: var(--muted);
+    font-size: 11px; font-weight: 500; cursor: pointer; transition: all .15s;
+  }
+  .model-toggle button.active { background: var(--accent-dim); color: var(--accent); }
+  .model-toggle button:hover:not(.active) { color: var(--text); }
+
+  .memory-toggle { display: flex; align-items: center; gap: 6px; margin-left: 16px; }
+  .toggle-switch { position: relative; width: 34px; height: 18px; }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; cursor: pointer; inset: 0; background: var(--border);
+    border-radius: 18px; transition: .2s;
+  }
+  .toggle-slider:before {
+    content: ""; position: absolute; width: 12px; height: 12px; left: 3px; bottom: 3px;
+    background: white; border-radius: 50%; transition: .2s;
+  }
+  .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
+  .toggle-switch input:checked + .toggle-slider:before { transform: translateX(16px); }
+  .memory-toggle-label { font-size: 11px; color: var(--muted); }
+
+  /* Messages */
+  #messages { flex: 1; overflow-y: auto; padding: 24px 20px; display: flex; flex-direction: column; gap: 20px; }
+  .msg { max-width: 78%; }
+  .msg.user { align-self: flex-end; }
+  .msg.assistant { align-self: flex-start; }
+
+  .msg-bubble {
+    padding: 12px 16px; border-radius: 14px; line-height: 1.65;
+    white-space: pre-wrap; word-break: break-word; font-size: 14px;
+  }
+  .msg.user .msg-bubble {
+    background: var(--accent); color: white;
+    border-bottom-right-radius: 4px;
+  }
+  .msg.assistant .msg-bubble {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-footer { margin-top: 6px; display: flex; flex-direction: column; gap: 5px; }
+  .msg-meta { font-size: 11px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .msg.user .msg-footer { align-items: flex-end; }
+  .model-badge {
+    font-size: 10px; padding: 1px 6px; border-radius: 4px;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+
+  .memory-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .memory-chip {
+    font-size: 10px; background: var(--accent-dim); color: var(--accent);
+    padding: 2px 8px; border-radius: 20px; max-width: 220px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    border: 1px solid rgba(124,106,255,0.2); cursor: default;
+  }
+  .memory-chips-label { font-size: 10px; color: var(--muted); }
+
+  .rating-row { display: flex; align-items: center; gap: 6px; }
+  .rating-label { font-size: 10px; color: var(--muted2); }
+  .rating-btns { display: flex; gap: 3px; }
+  .rating-btn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 2px 7px; border-radius: 4px; cursor: pointer; font-size: 11px; transition: all .1s;
+  }
+  .rating-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+  .rating-btn.rated { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+  /* Thinking animation */
+  .thinking-bubble { padding: 14px 16px; }
+  .thinking-dots { display: flex; gap: 5px; align-items: center; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: bounce .9s infinite; }
+  .dot:nth-child(2) { animation-delay: .15s; }
+  .dot:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+  .thinking-text { font-size: 11px; color: var(--muted); margin-left: 4px; }
+
+  /* Welcome card */
+  .welcome-card {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px 24px; max-width: 460px; align-self: center; margin: auto;
+  }
+  .welcome-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .welcome-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+  .welcome-features { list-style: none; }
+  .welcome-features li { font-size: 12px; color: var(--muted); padding: 3px 0; }
+  .welcome-features li::before { content: "→ "; color: var(--accent); }
+
+  /* Input area */
+  #input-area { padding: 14px 20px 18px; border-top: 1px solid var(--border); background: var(--surface); }
+  #input-row { display: flex; gap: 8px; align-items: flex-end; }
+  #query-input {
+    flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 12px 16px; border-radius: 12px; font-size: 14px; font-family: inherit;
+    resize: none; min-height: 48px; max-height: 160px; overflow-y: auto; line-height: 1.5;
+    transition: border-color .15s;
+  }
+  #query-input:focus { outline: none; border-color: var(--accent); }
+  #query-input::placeholder { color: var(--muted2); }
+  #send-btn {
+    background: var(--accent); color: white; border: none; border-radius: 12px;
+    width: 48px; height: 48px; min-width: 48px; cursor: pointer; font-size: 20px;
+    transition: all .15s; display: flex; align-items: center; justify-content: center;
+  }
+  #send-btn:hover { opacity: .85; transform: scale(1.03); }
+  #send-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--muted2); margin-top: 7px; text-align: center; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+  /* Toast */
+  #toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    transition: transform .25s ease; z-index: 999; pointer-events: none; white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.success { border-color: var(--green); color: var(--green); }
+  #toast.error { border-color: var(--red); color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ── Sidebar ── -->
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">✦</div>
+    <div>
+      <div style="font-size:17px;font-weight:700;">Jarvis</div>
+      <div style="font-size:11px;color:var(--muted);">AI with persistent memory</div>
+    </div>
+  </div>
+
+  <div class="sidebar-tabs">
+    <button class="active" onclick="switchTab('memories', this)">Memories</button>
+    <button onclick="switchTab('add', this)">+ Add</button>
+    <button onclick="switchTab('extract', this)">Extract</button>
+    <button onclick="switchTab('stats', this)">Stats</button>
+  </div>
+
+  <div class="tab-content">
+
+    <!-- Memories -->
+    <div id="tab-memories" class="tab-pane active">
+      <div id="memory-list">
+        <div class="empty-state">
+          <strong>No memories yet</strong>
+          Add facts about yourself using the + Add tab, or paste a conversation in Extract.
+        </div>
+      </div>
+    </div>
+
+    <!-- Add memory -->
+    <div id="tab-add" class="tab-pane">
+      <div class="form-group">
+        <label>What should Jarvis remember?</label>
+        <textarea class="form-ctrl" id="new-content" placeholder="e.g. I prefer concise answers without fluff&#10;e.g. I'm building a startup in the AI space&#10;e.g. I code primarily in Python"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <div class="category-grid" id="category-grid">
+          <button class="cat-btn selected" onclick="selectCat(this,'preference')">🎯 Preference</button>
+          <button class="cat-btn" onclick="selectCat(this,'goal')">🚀 Goal</button>
+          <button class="cat-btn" onclick="selectCat(this,'expertise')">🧠 Expertise</button>
+          <button class="cat-btn" onclick="selectCat(this,'pattern')">🔁 Pattern</button>
+          <button class="cat-btn" onclick="selectCat(this,'general')" style="grid-column:span 2">📌 General</button>
+        </div>
+        <input type="hidden" id="new-category" value="preference">
+      </div>
+      <div class="form-group">
+        <label>Confidence <span style="color:var(--muted2);font-weight:400">(how certain is this?)</span></label>
+        <input class="form-ctrl" id="new-confidence" type="number" min="0.1" max="1.0" step="0.1" value="0.9">
+      </div>
+      <button class="btn btn-primary" id="add-btn" onclick="addMemory()">Save memory</button>
+    </div>
+
+    <!-- Extract -->
+    <div id="tab-extract" class="tab-pane">
+      <div class="extract-hint">
+        Paste any conversation (with an AI, colleague, notes) and Jarvis will automatically extract facts about you and save them as memories.
+      </div>
+      <div class="form-group">
+        <label>Paste conversation</label>
+        <textarea class="form-ctrl" id="extract-input" style="min-height:120px" placeholder="User: I prefer Python over JavaScript...&#10;Assistant: Noted...&#10;User: My startup is in the health space..."></textarea>
+      </div>
+      <button class="btn btn-primary" id="extract-btn" onclick="extractConversation()">Extract facts</button>
+
+      <div id="extract-results" class="extract-results" style="display:none">
+        <div class="section-label" style="margin-top:16px">Extracted facts — select to save</div>
+        <div id="extract-facts-list"></div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-green" onclick="saveSelectedFacts()" id="save-facts-btn">Save selected</button>
+          <button class="btn btn-secondary" onclick="clearExtract()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div id="tab-stats" class="tab-pane">
+      <div id="stats-content">
+        <div class="empty-state">Loading…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Main chat ── -->
+<div id="main">
+  <div id="chat-header">
+    <div>
+      <div class="header-title">Chat</div>
+      <div class="header-sub" id="header-sub">Ready</div>
+    </div>
+    <div class="model-selector">
+      <span class="model-label">Model</span>
+      <div class="model-toggle">
+        <button id="btn-auto" class="active" onclick="setModel('auto', this)">Auto</button>
+        <button id="btn-claude" onclick="setModel('claude', this)">Claude</button>
+        <button id="btn-ollama" onclick="setModel('ollama', this)">Ollama</button>
+      </div>
+    </div>
+    <div class="memory-toggle">
+      <label class="toggle-switch">
+        <input type="checkbox" id="inject-cb" checked>
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="memory-toggle-label" title="When on, Jarvis retrieves relevant memories and uses them to personalize responses">Memory</span>
+    </div>
+  </div>
+
+  <div id="messages">
+    <div class="welcome-card">
+      <h3>✦ Welcome to Jarvis</h3>
+      <p>I'm an AI assistant that remembers things about you over time. The more you use me, the more personalized my answers become.</p>
+      <ul class="welcome-features">
+        <li>Ask anything — I'll personalize with your memories</li>
+        <li>Add memories manually in the sidebar</li>
+        <li>Paste a conversation to auto-extract facts</li>
+        <li>Rate my responses to improve quality</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="input-area">
+    <div id="input-row">
+      <textarea id="query-input" placeholder="Ask something… (Enter to send, Shift+Enter for new line)" rows="1"></textarea>
+      <button id="send-btn" onclick="sendMessage()">↑</button>
+    </div>
+    <div class="input-hint" id="input-hint">Using <span id="model-hint">auto</span> model · Memory injection <span id="memory-hint">on</span></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  let modelPreference = 'auto';
+  let extractedFacts  = [];
+
+  // ── Model toggle ───────────────────────────────────────────────────────────
+  function setModel(pref, btn) {
+    modelPreference = pref;
+    document.querySelectorAll('.model-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('model-hint').textContent = pref;
+  }
+
+  // ── Tab switching ──────────────────────────────────────────────────────────
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-tabs button').forEach(b => b.classList.remove('active'));
+    document.getElementById(`tab-${name}`).classList.add('active');
+    btn.classList.add('active');
+    if (name === 'memories') loadMemories();
+    if (name === 'stats')    loadStats();
+  }
+
+  // ── Category selector ──────────────────────────────────────────────────────
+  function selectCat(btn, value) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('new-category').value = value;
+  }
+
+  // ── Memories ───────────────────────────────────────────────────────────────
+  async function loadMemories() {
+    const res  = await fetch('/memories');
+    const data = await res.json();
+    const list = document.getElementById('memory-list');
+    if (!data.memories.length) {
+      list.innerHTML = '<div class="empty-state"><strong>No memories yet</strong>Use + Add to add facts, or Extract to pull from a conversation.</div>';
+      return;
+    }
+    const groups = {};
+    data.memories.forEach(m => {
+      const cat = m.category || 'general';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(m);
+    });
+    let html = '';
+    for (const [cat, mems] of Object.entries(groups)) {
+      html += `<div class="section-label">${cat} (${mems.length})</div>`;
+      mems.forEach(m => {
+        html += `
+          <div class="mem-item" id="mem-${m.id}">
+            <button class="mem-delete" onclick="deleteMemory(${m.id})" title="Delete">×</button>
+            <div class="mem-content">${escHtml(m.content)}</div>
+            <div class="mem-meta">
+              <span class="mem-conf">conf: ${(m.confidence||0).toFixed(2)} · accessed ${m.access_count||0}×</span>
+            </div>
+          </div>`;
+      });
+    }
+    list.innerHTML = html;
+  }
+
+  async function deleteMemory(id) {
+    await fetch(`/memories/${id}`, { method: 'DELETE' });
+    document.getElementById(`mem-${id}`)?.remove();
+    showToast('Memory deleted');
+  }
+
+  async function addMemory() {
+    const content    = document.getElementById('new-content').value.trim();
+    const category   = document.getElementById('new-category').value;
+    const confidence = parseFloat(document.getElementById('new-confidence').value);
+    if (!content) return;
+    const btn = document.getElementById('add-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    await fetch('/memories/add', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content, category, confidence }),
+    });
+    document.getElementById('new-content').value = '';
+    btn.disabled = false; btn.textContent = 'Save memory';
+    showToast('Memory saved ✓', 'success');
+  }
+
+  // ── Extract ─────────────────────────────────────────────────────────────────
+  async function extractConversation() {
+    const text = document.getElementById('extract-input').value.trim();
+    if (!text) return;
+    const btn = document.getElementById('extract-btn');
+    btn.disabled = true; btn.textContent = 'Extracting…';
+
+    try {
+      const res  = await fetch('/extract', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conversation: text }),
+      });
+      const data = await res.json();
+      renderExtractResults(data.extracted);
+    } catch(e) {
+      showToast('Extraction failed', 'error');
+    }
+    btn.disabled = false; btn.textContent = 'Extract facts';
+  }
+
+  function renderExtractResults(extracted) {
+    extractedFacts = [];
+    const list = document.getElementById('extract-facts-list');
+    list.innerHTML = '';
+
+    for (const [category, items] of Object.entries(extracted)) {
+      if (!Array.isArray(items) || !items.length) continue;
+      items.forEach((item, i) => {
+        const fact = item.fact || item.goal || item.topic || item.pattern || '';
+        if (!fact) return;
+        const conf = parseFloat(item.confidence || 0.7);
+        const id   = `ef-${extractedFacts.length}`;
+        extractedFacts.push({ id, fact, category, conf });
+        list.innerHTML += `
+          <div class="extract-fact">
+            <input type="checkbox" id="${id}" checked>
+            <div>
+              <div class="extract-fact-text">${escHtml(fact)}</div>
+              <span class="mem-tag">${escHtml(category)}</span>
+              <span class="mem-conf" style="font-size:10px;margin-left:6px">conf: ${conf.toFixed(2)}</span>
+            </div>
+          </div>`;
+      });
+    }
+
+    if (!extractedFacts.length) {
+      list.innerHTML = '<div class="empty-state">No facts found in this conversation.</div>';
+    }
+    document.getElementById('extract-results').style.display = 'block';
+  }
+
+  async function saveSelectedFacts() {
+    const selected = extractedFacts.filter(f => document.getElementById(f.id)?.checked);
+    if (!selected.length) { showToast('No facts selected', 'error'); return; }
+    const btn = document.getElementById('save-facts-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    for (const f of selected) {
+      await fetch('/memories/add', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: f.fact, category: f.category, confidence: f.conf }),
+      });
+    }
+    btn.disabled = false; btn.textContent = 'Save selected';
+    showToast(`${selected.length} memories saved ✓`, 'success');
+    clearExtract();
+  }
+
+  function clearExtract() {
+    document.getElementById('extract-input').value = '';
+    document.getElementById('extract-results').style.display = 'none';
+    extractedFacts = [];
+  }
+
+  // ── Stats ──────────────────────────────────────────────────────────────────
+  async function loadStats() {
+    const res  = await fetch('/stats');
+    const data = await res.json();
+    document.getElementById('stats-content').innerHTML = `
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Memories</div>
+          <div class="stat-value">${data.total_memories}</div>
+          <div class="stat-sub">facts stored</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sessions</div>
+          <div class="stat-value">${data.recent_interactions}</div>
+          <div class="stat-sub">recent chats</div>
+        </div>
+      </div>
+      <div class="stat-card" style="margin-top:8px">
+        <div class="stat-label">Avg Rating</div>
+        <div class="stat-value" style="font-size:22px">${data.avg_rating ? data.avg_rating + ' / 5' : '—'}</div>
+        <div class="stat-sub">${data.avg_rating ? 'from rated interactions' : 'no ratings yet — rate responses after chatting'}</div>
+      </div>`;
+  }
+
+  // ── Chat ───────────────────────────────────────────────────────────────────
+  async function sendMessage() {
+    const input = document.getElementById('query-input');
+    const query = input.value.trim();
+    if (!query) return;
+
+    // Remove welcome card if present
+    const welcome = document.querySelector('.welcome-card');
+    if (welcome) welcome.remove();
+
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('send-btn').disabled = true;
+    const injectMemory = document.getElementById('inject-cb').checked;
+
+    appendMsg('user', query);
+    const thinkingEl = appendThinking();
+    setHeaderSub('Thinking…');
+
+    try {
+      const res = await fetch('/ask', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, inject_memory: injectMemory, model_preference: modelPreference }),
+      });
+      const data = await res.json();
+      thinkingEl.remove();
+      appendMsg('assistant', data.response, data.interaction_id, data.memories_used || [], data.latency_ms, data.model);
+      setHeaderSub(`Last response: ${data.latency_ms}ms · ${data.model}`);
+    } catch(e) {
+      thinkingEl.remove();
+      appendMsg('assistant', '⚠ Could not reach backend. Make sure the server is running.', null, [], 0, '');
+      setHeaderSub('Error');
+    }
+    document.getElementById('send-btn').disabled = false;
+    input.focus();
+  }
+
+  function appendMsg(role, text, interactionId=null, memoriesUsed=[], latencyMs=0, model='') {
+    const msgs = document.getElementById('messages');
+    const div  = document.createElement('div');
+    div.className = `msg ${role}`;
+    let html = `<div class="msg-bubble">${escHtml(text)}</div>`;
+
+    if (role === 'assistant') {
+      let footerHtml = '';
+      const modelBadge = model ? `<span class="model-badge">${escHtml(model.split(':')[0])}</span>` : '';
+      footerHtml += `<div class="msg-meta">${latencyMs ? latencyMs+'ms' : ''} ${modelBadge}</div>`;
+
+      if (memoriesUsed.length) {
+        const chips = memoriesUsed.map(m =>
+          `<span class="memory-chip" title="${escHtml(m.content)}">${escHtml(m.content)}</span>`
+        ).join('');
+        footerHtml += `<div class="memory-chips"><span class="memory-chips-label">Used:</span>${chips}</div>`;
+      }
+      if (interactionId) {
+        const ratings = [1,2,3,4,5].map(r =>
+          `<button class="rating-btn" onclick="rate(${interactionId},${r},this)">${r}</button>`
+        ).join('');
+        footerHtml += `<div class="rating-row"><span class="rating-label">Rate:</span><div class="rating-btns">${ratings}</div></div>`;
+      }
+      html += `<div class="msg-footer">${footerHtml}</div>`;
+    }
+    div.innerHTML = html;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  function appendThinking() {
+    const msgs = document.getElementById('messages');
+    const div  = document.createElement('div');
+    div.className = 'msg assistant';
+    div.innerHTML = `<div class="msg-bubble thinking-bubble"><div class="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="thinking-text">Jarvis is thinking…</span></div></div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  async function rate(interactionId, rating, btn) {
+    await fetch('/rate', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ interaction_id: interactionId, rating }),
+    });
+    btn.closest('.rating-btns').querySelectorAll('.rating-btn').forEach(b => b.classList.remove('rated'));
+    btn.classList.add('rated');
+    showToast('Rating saved ✓', 'success');
+  }
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  function setHeaderSub(text) {
+    document.getElementById('header-sub').textContent = text;
+  }
+
+  function showToast(msg, type='') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = type ? `show ${type}` : 'show';
+    setTimeout(() => { t.className = type; }, 2200);
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Auto-resize textarea
+  const qi = document.getElementById('query-input');
+  qi.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 160) + 'px';
+  });
+  qi.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+
+  // Memory hint update
+  document.getElementById('inject-cb').addEventListener('change', function() {
+    document.getElementById('memory-hint').textContent = this.checked ? 'on' : 'off';
+  });
+
+  // Init
+  loadMemories();
+  fetch('/config').then(r=>r.json()).then(cfg => {
+    if (!cfg.ollama_available) {
+      document.getElementById('btn-ollama').disabled = true;
+      document.getElementById('btn-ollama').title = 'Ollama not running locally';
+      document.getElementById('btn-ollama').style.opacity = '0.4';
+      setModel('claude', document.getElementById('btn-claude'));
+    }
+  });
+</script>
+</body>
+</html>
