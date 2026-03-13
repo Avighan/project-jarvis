@@ -161,6 +161,11 @@ async def ask(req: AskRequest, request: Request):
             m.pop("embedding", None)
         if all_mems:
             hits = retrieve_tfidf(req.query, all_mems, top_n=4, confidence_weight=True)
+            # TF-IDF only matches on shared keywords — if no hits (query and memories
+            # share no tokens), fall back to top-4 by confidence so preferences/goals
+            # are always injected regardless of query wording.
+            if not hits:
+                hits = sorted(all_mems, key=lambda m: m.get("confidence", 0), reverse=True)[:4]
             if hits:
                 context_block = format_memories(hits, fmt="json")
                 memories_used = [{"content": h["content"], "score": round(h.get("retrieval_score", 0), 3)} for h in hits]
